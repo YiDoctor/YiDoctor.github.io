@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=create by yimu" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=create by yimu">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=create by yimu">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=create by yimu">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=create by yimu" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, yimu">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Http协议 B/S">
+<meta name="keywords" content="专注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="那年学过的web后端笔记">
+<meta property="og:url" content="http://yoursite.com/2018/11/11/那年学过的web后端/index.html">
+<meta property="og:site_name" content="易慕晓生">
+<meta property="og:description" content="Http协议 B/S">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/KWbH2So.png">
+<meta property="og:image" content="https://i.imgur.com/dqd8AZY.png">
+<meta property="og:image" content="https://i.imgur.com/SUV9jW5.png">
+<meta property="og:image" content="https://i.imgur.com/HUiEmll.png">
+<meta property="og:image" content="https://i.imgur.com/SSwzCtl.png">
+<meta property="og:image" content="https://i.imgur.com/NiTYq23.png">
+<meta property="og:image" content="https://i.imgur.com/axFwqlb.png">
+<meta property="og:image" content="https://i.imgur.com/71bHVWK.png">
+<meta property="og:image" content="https://i.imgur.com/QtFizh9.png">
+<meta property="og:image" content="https://i.imgur.com/iyYRIHl.png">
+<meta property="og:updated_time" content="2018-11-11T04:47:50.248Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="那年学过的web后端笔记">
+<meta name="twitter:description" content="Http协议 B/S">
+<meta name="twitter:image" content="https://i.imgur.com/KWbH2So.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: 'create by yimu',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/11/那年学过的web后端/">
+
+
+
+
+
+  <title>那年学过的web后端笔记 | 易慕晓生</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">易慕晓生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/那年学过的web后端/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="易慕晓生">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="易慕晓生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">那年学过的web后端笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T12:49:11+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/你那么努力总得给自己留点记忆/" itemprop="url" rel="index">
+                    <span itemprop="name">你那么努力总得给自己留点记忆</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h2><p><strong> B/S</strong><br><img src="https://i.imgur.com/KWbH2So.png" alt=""><br><img src="https://i.imgur.com/dqd8AZY.png" alt=""><br><a id="more"></a></p>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><p><img src="https://i.imgur.com/SUV9jW5.png" alt=""></p>
+<h3 id="Servlet编写"><a href="#Servlet编写" class="headerlink" title="Servlet编写"></a>Servlet编写</h3><pre><code>案例: 
+public class Servlet1 extends HttpServlet {
+    protected void service(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        response.setContentType(&quot;text/html;charset=utf-8&quot;);
+        PrintWriter pw = response.getWriter();
+        pw.append(&quot;&lt;h1&gt;我们的第一个servlet&lt;/h1&gt;&quot;);
+    }
+}
+</code></pre><h3 id="xml中配置Servlet"><a href="#xml中配置Servlet" class="headerlink" title="xml中配置Servlet"></a>xml中配置Servlet</h3><pre><code>步骤: 
+1.  将Servlet 配置到web.xml中, 并起别名
+    &lt;servlet&gt;
+        &lt;servlet-name&gt;别名&lt;/servlet-name&gt;
+        &lt;servlet-class&gt;类的全称(包名.类名)&lt;/servlet-class&gt;
+    &lt;/servlet&gt;
+2.  使用Servlet别名, 映射一个或多个网址
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;别名&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/映射地址&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;  
+    .....
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;别名&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/映射地址2&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;  
+
+    映射完毕后, 访问此servlet的方式: 
+        http://ip地址:端口号/项目名/映射地址
+案例: 
+    &lt;servlet&gt;
+        &lt;servlet-name&gt;s1&lt;/servlet-name&gt;
+        &lt;servlet-class&gt;cn.xdl.demo.Servlet1&lt;/servlet-class&gt;
+      &lt;/servlet&gt;
+      &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;s1&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/666.php&lt;/url-pattern&gt;
+      &lt;/servlet-mapping&gt;
+</code></pre><h3 id="Servlet生命周期"><a href="#Servlet生命周期" class="headerlink" title="Servlet生命周期"></a>Servlet生命周期</h3><p>生命周期 在Servlet中, 存在三个方法的体现: </p>
+<ul>
+<li>init方法  :    当此方法被调用时, 表示对象已创建, 且初始化完成! 我们常在此方法中初始化 一些资源 !  </li>
+<li>service方法   :   当被调用时, 表示来了一个客户端的请求, 此方法每次都执行在一个新的线程中 !</li>
+<li>destroy方法:   当此方法被调用时,表示Servlet即将被销毁 ! 我们常在此方法中 释放资源 !</li>
+</ul>
+<h3 id="乱码问题"><a href="#乱码问题" class="headerlink" title="乱码问题"></a>乱码问题</h3><h4 id="请求时乱码"><a href="#请求时乱码" class="headerlink" title="请求时乱码"></a>请求时乱码</h4><p>方式一:可适用于所有问题 引起的乱码</p>
+<pre><code>原理:  将乱码的文字, 重新变为字节数组, 再按照我们支持的编码重新组装 !
+步骤1.    将接收到的文字, 按照ISO-8859-1编码打碎成字节数组
+    byte[] b = 乱码文字.getBytes(&quot;ISO-8859-1&quot;);
+步骤2.    将打碎后的字节数组, 按照UTF-8组装
+    String text = new String(b,&quot;UTF-8&quot;);
+简化: String text = new String(乱码文字.getBytes(&quot;ISO-8859-1&quot;),&quot;UTF-8&quot;);
+</code></pre><p>方式二:    只能解决POST乱码问题, 用于在获取数据之前, 设置请求体的编码格式</p>
+<pre><code>request.setCharacterEncoding(&quot;UTF-8&quot;);
+</code></pre><h3 id="响应时乱码"><a href="#响应时乱码" class="headerlink" title="响应时乱码"></a>响应时乱码</h3><p>在处理响应时数据时, 无论时get/post请求, 方式都一致 !  一定要在获取输出流之前!<br>方式一:</p>
+<pre><code>设置网页内容类型 , 并设置网页编码 , 不建议使用
+response.setContentType(&quot;text/html;charset=utf-8&quot;); 
+</code></pre><p>方式二:</p>
+<pre><code>设置文字编码为UTF-8
+response.setCharacterEncoding(&quot;UTF-8&quot;);
+</code></pre><h3 id="请求转发和重定向"><a href="#请求转发和重定向" class="headerlink" title="请求转发和重定向"></a>请求转发和重定向</h3><p><img src="https://i.imgur.com/HUiEmll.png" alt=""></p>
+<h3 id="Cookie和Session"><a href="#Cookie和Session" class="headerlink" title="Cookie和Session"></a>Cookie和Session</h3><p><img src="https://i.imgur.com/SSwzCtl.png" alt=""></p>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>常用方法:</p>
+<pre><code>如何将Cookie设置到响应的消息头: 
+    response.addCookie(Cookie cookie);
+如何从请求的消息头中获取Cookie:
+因为服务器可以给浏览器多个Cookie, 所以得到的是一个Cookie数组
+Cookie[] cookies = request.getCookies();
+</code></pre><h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4><p>常用方法:<br>(session是JSP四大域对象之一)</p>
+<ol>
+<li>设置属性:   setAttribute(String key,Object value);</li>
+<li>获取属性:   Object value = getAttribute(String key);</li>
+<li>删除属性:   removeAttribute(String key);</li>
+<li>销毁Session:  invalidate();</li>
+</ol>
+<h4 id="设置Session存活时长"><a href="#设置Session存活时长" class="headerlink" title="设置Session存活时长:"></a>设置Session存活时长:</h4><p>方式一: 修改所有的session默认时长</p>
+<pre><code>修改tomcat目录下的conf文件夹下的 web.xml
+&lt;session-config&gt;
+    &lt;session-timeout&gt;数字类型:  分钟&lt;/session-timeout&gt;
+&lt;/session-config&gt;
+</code></pre><p>方式二:修改单个session存活时长:</p>
+<pre><code>使用session对象, 调用setMaxInactiveInterval(int 秒);
+</code></pre><h2 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h2><p><img src="https://i.imgur.com/NiTYq23.png" alt=""></p>
+<p>JSP即是Java Server Pages的简称</p>
+<h3 id="JSP三大指令"><a href="#JSP三大指令" class="headerlink" title="JSP三大指令"></a>JSP三大指令</h3><h4 id="page指令"><a href="#page指令" class="headerlink" title="page指令"></a>page指令</h4><p>用来快速的描述JSP页面的信息, 用来对JSP页面进行配置:<br>常用属性: </p>
+<pre><code>&lt;%@page language=“script language”|--   语言 ,一般为java
+    extends=“className”  |--可以指定JSP在生成Java文件时, 文件所继承的Java类
+    *import=“importList”  |--导包列表 ,可以在参数中导入多个包, 多个包之间使用逗号隔开
+    buffer=“none|kb size”|   --none:不缓冲，默认8k
+    session=“true|false” |   --是否可以使用session，默认true
+    autoFlush=“true|false”  --缓冲器是否自动清除，默认true
+    isThreadSafe=“true|false”|--当前JSP代码执行区是否为线程安全的
+    *errorPage=“errorPageUrl” |--指定产生错误后, 处理错误的页面
+    *isErrorPage=“true|false” |--表示当前页面是否为处理错误的页面
+    contentType=“contentTyepInfo”|--描述网页的内容类型 和 编码格式
+%&gt;
+</code></pre><p>导包案例: </p>
+<pre><code>&lt;%@page import=&quot;java.util.HashMap,java.util.ArrayList&quot; %&gt;
+</code></pre><p>错误页面处理: </p>
+<pre><code>在产生错误的页面中加入page指令, errorPage属性中指定错误处理页面 
+在错误处理的jsp文件中, 指定isErrorPage为true , 可以直接操作一个叫做exception的对象
+
+在操作exception时, 注意有可能为null(当用户直接访问错误页面时)
+</code></pre><h4 id="处理项目中的错误码"><a href="#处理项目中的错误码" class="headerlink" title="处理项目中的错误码"></a>处理项目中的错误码</h4><p>使用上述的page指令, 无法处理404错误, 只有当程序出现BUG时, 才可以处理异常 !<br>想要处理404异常, 需要告知tomcat , 当在本项目中用户访问出现404以后, 跳转到指定页面: </p>
+<p><strong>在项目的web.xml中添加如下节点: </strong></p>
+<pre><code>&lt;error-page&gt;
+    &lt;error-code&gt;404&lt;/error-code&gt;
+    &lt;location&gt;/error.jsp&lt;/location&gt;
+&lt;/error-page&gt;
+&lt;error-page&gt;
+    &lt;error-code&gt;500&lt;/error-code&gt;
+    &lt;location&gt;/error.jsp&lt;/location&gt;
+&lt;/error-page&gt;
+</code></pre><h4 id="include指令"><a href="#include指令" class="headerlink" title="include指令"></a>include指令</h4><p>用来在一个JSP文件中, 引入另一个JSP程序 或 HTML文件 !<br>格式: </p>
+<pre><code>&lt;%@include file=&quot;文件路径&quot; %&gt;
+</code></pre><p>JSP文件 在引擎转换时, 会将引入的文件代码复制粘贴到include指令的位置, 然后统一进行转换与编译操作(转换为一个Java文件)!</p>
+<h4 id="include动作"><a href="#include动作" class="headerlink" title="include动作"></a>include动作</h4><p>用于在一个JSP文件中, 引入另一个JSP程序 或 HTML文件 !<br>格式: </p>
+<pre><code>&lt;jsp:include page=&quot;文件地址&quot; flush=&quot;true&quot;/&gt;
+</code></pre><p>include动作引入的JSP文件 , 在转换为.java的时候, 是单独转换的 ,只有在代码执行到include动作时, 才会编译被引入的文件, 动态载入!</p>
+<h4 id="taglib指令"><a href="#taglib指令" class="headerlink" title="taglib指令"></a>taglib指令</h4><h3 id="JSP内置对象"><a href="#JSP内置对象" class="headerlink" title="JSP内置对象"></a>JSP内置对象</h3><table>
+<thead>
+<tr>
+<th>隐含对象</th>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>out</td>
+<td>JSPWriter</td>
+<td>用来向客户端进行字符的响应</td>
+</tr>
+<tr>
+<td>request</td>
+<td>HttpServletRequest</td>
+<td>请求对象, 包含Http协议中请求数据</td>
+</tr>
+<tr>
+<td>response</td>
+<td>HttpServletResponse</td>
+<td>响应对象</td>
+</tr>
+<tr>
+<td>session</td>
+<td>HttpSession</td>
+<td>会话对象, 用来在一次会话中对单个用户 进行数据的共享与会话的跟踪</td>
+</tr>
+<tr>
+<td>application</td>
+<td>ServletContext</td>
+<td>Servlet上下文 , 每个应用在启动时会创建且只创建一个对象, 在应用关闭时,对象被释放. 用来在当前项目中Servlet之间进行数据的共享与通信</td>
+</tr>
+<tr>
+<td>pageContext</td>
+<td>PageContext</td>
+<td>页面的上下文, 用于在当前页面进行数据的共享 , 在设计9大内置对象时, 将所有其他内置对象封装在了PageContext中</td>
+</tr>
+<tr>
+<td>config</td>
+<td>ServletConfig</td>
+<td>配置对象</td>
+</tr>
+<tr>
+<td>page</td>
+<td>Object</td>
+<td>当前页面本身</td>
+</tr>
+<tr>
+<td>exception</td>
+<td>Throwable</td>
+<td>当page指令中 isErrorPage为true时 才会产生此对象 , 用于收集其他页面产生的异常信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="四大域对象"><a href="#四大域对象" class="headerlink" title="四大域对象"></a>四大域对象</h3><p><img src="https://i.imgur.com/axFwqlb.png" alt=""></p>
+<h3 id="EL和JSTL"><a href="#EL和JSTL" class="headerlink" title="EL和JSTL"></a>EL和JSTL</h3><p><img src="https://i.imgur.com/71bHVWK.png" alt=""></p>
+<h3 id="Filter-amp-Listener组件"><a href="#Filter-amp-Listener组件" class="headerlink" title="Filter&amp;Listener组件"></a>Filter&amp;Listener组件</h3><p><img src="https://i.imgur.com/QtFizh9.png" alt=""><br><strong>在web.xml文件中配置Filter组件和Servlet配置基本一致</strong><br><strong>不使用注解在web.xml中配置Listener</strong></p>
+<pre><code>&lt;listener &gt;
+     &lt;listener-class&gt;包名 + 类名&lt;/listener-class&gt;
+&lt;/listener&gt;
+</code></pre><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p><img src="https://i.imgur.com/iyYRIHl.png" alt=""></p>
+<h3 id="AJAX优点"><a href="#AJAX优点" class="headerlink" title="AJAX优点"></a>AJAX优点</h3><p>作用:(1)异步请求和响应处理(2)页面局部刷新处理<br>优点:</p>
+<ul>
+<li>减少页面整体刷新，提升用户体验(局部刷新)</li>
+<li>减少交互的数据量，提升程序性能 </li>
+<li>以异步模式处理请求，较少用户操作等待时间，增 强了用户的操作连续性(异步交互) </li>
+</ul>
+<h3 id="AJAX技术应用步骤"><a href="#AJAX技术应用步骤" class="headerlink" title="AJAX技术应用步骤"></a>AJAX技术应用步骤</h3><ul>
+<li>创建XMLHttpRequest对象 </li>
+<li>调用open方法，创建请求 </li>
+<li>设定onreadystatechange事件函数，用于 响应处理 </li>
+<li><p>调用send方法发送请求 </p>
+<pre><code>// 发送请求之前的准备 
+对象.open(请求方式,请求路径,是否异步)  如    xhr.open(&apos;get&apos;,&apos;getDate.do&apos;,true);
+// 注册请求处理函数 
+xhr.onreadystatechange=function(){
+// 请求响应完成  并且  http 状态 是 200
+    if(xhr.readyState == 4 &amp;&amp; xhr.status==200){
+// 获取请求响应的数据
+        var text = xhr.responseText;
+    } 
+};  
+// 发送请求 
+xhr.send(null); 
+</code></pre></li>
+</ul>
+<h3 id="AJAX-Json应用"><a href="#AJAX-Json应用" class="headerlink" title="AJAX+Json应用"></a>AJAX+Json应用</h3><h4 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h4><ul>
+<li>JSON （JavaScript   Object  Notation）是 JavaScript语言中的一种对象类型。 </li>
+<li>JSON的好处是易于阅读和JavaScript解析 </li>
+<li>当客户端和服务器端交互大量数据时，使用JSON 格式传输可以简化客户端和服务器端的编程 </li>
+</ul>
+<h3 id="Jquery和AJAX"><a href="#Jquery和AJAX" class="headerlink" title="Jquery和AJAX"></a>Jquery和AJAX</h3><p>jQuery对ajax请求的创建、发送和响应都进  行了相应的封装，同时也考虑 了浏览器的兼容性问题 </p>
+<h4 id="ajax-函数"><a href="#ajax-函数" class="headerlink" title="$.ajax()函数"></a>$.ajax()函数</h4><pre><code>$.ajax({     
+    url ：请求 地址,     
+    type ：请求 方式,     
+    async ：默认 true  false 表示同步 请求,     
+    data ：请求 参数,     
+    dataType ：服务器返回的 数据类型,      
+    success ： 服务器 正常 处理时执行的 回调函 数,     
+    error ： 服务器处理出错时执行的 回调函 数, 
+}); 
+</code></pre><h4 id="get-函数"><a href="#get-函数" class="headerlink" title="$.get()函数"></a>$.get()函数</h4><pre><code>$.get(url，data，function，datatype)  
+    url：请求地址  
+    data：请求参数  
+    dataType：服务器返回的数据类型  
+    function：服务器正常处理时执行的回调函数 
+</code></pre><h4 id="post-函数"><a href="#post-函数" class="headerlink" title="$.post()函数"></a>$.post()函数</h4><pre><code>$.post(url，data，function，datatype)  
+    url：请求地址  
+    data：请求参数  
+    dataType：服务器返回的数据类型  
+    function：服务器正常处理时执行的回调函数 
+</code></pre><h4 id="getJSON函数"><a href="#getJSON函数" class="headerlink" title="$.getJSON函数"></a>$.getJSON函数</h4><pre><code>$.getJSON(url，data，function)  
+    url：请求地址  
+    data：请求参数  
+    function：服务器正常处理时执行的回调函数 
+</code></pre><h4 id="load-函数"><a href="#load-函数" class="headerlink" title="load()函数"></a>load()函数</h4><pre><code>$obj.load(url，data，function)  
+url：请求地址  
+data：请求参数  
+function：ajax请求处理完毕后执行的回调函数 功能：利用ajax发送一个url请求，将返回结果填充到$obj元素中 （常用于页面引入)
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>求打赏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="易慕晓生 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="易慕晓生 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/11/那年学过的Quartz框架笔记/" rel="next" title="那年学过的Quartz框架笔记">
+                <i class="fa fa-chevron-left"></i> 那年学过的Quartz框架笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/11/那年学过的前端笔记/" rel="prev" title="那年学过的Web前端笔记">
+                那年学过的Web前端笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">易慕晓生</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心 方得始终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YDoctor" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:825742394@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Http协议"><span class="nav-number">1.</span> <span class="nav-text">Http协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet"><span class="nav-number">2.</span> <span class="nav-text">Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet编写"><span class="nav-number">2.1.</span> <span class="nav-text">Servlet编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xml中配置Servlet"><span class="nav-number">2.2.</span> <span class="nav-text">xml中配置Servlet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet生命周期"><span class="nav-number">2.3.</span> <span class="nav-text">Servlet生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#乱码问题"><span class="nav-number">2.4.</span> <span class="nav-text">乱码问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求时乱码"><span class="nav-number">2.4.1.</span> <span class="nav-text">请求时乱码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应时乱码"><span class="nav-number">2.5.</span> <span class="nav-text">响应时乱码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求转发和重定向"><span class="nav-number">2.6.</span> <span class="nav-text">请求转发和重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">2.7.</span> <span class="nav-text">Cookie和Session</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number">2.7.1.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Session"><span class="nav-number">2.7.2.</span> <span class="nav-text">Session</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置Session存活时长"><span class="nav-number">2.7.3.</span> <span class="nav-text">设置Session存活时长:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP"><span class="nav-number">3.</span> <span class="nav-text">JSP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP三大指令"><span class="nav-number">3.1.</span> <span class="nav-text">JSP三大指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#page指令"><span class="nav-number">3.1.1.</span> <span class="nav-text">page指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理项目中的错误码"><span class="nav-number">3.1.2.</span> <span class="nav-text">处理项目中的错误码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#include指令"><span class="nav-number">3.1.3.</span> <span class="nav-text">include指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#include动作"><span class="nav-number">3.1.4.</span> <span class="nav-text">include动作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#taglib指令"><span class="nav-number">3.1.5.</span> <span class="nav-text">taglib指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP内置对象"><span class="nav-number">3.2.</span> <span class="nav-text">JSP内置对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四大域对象"><span class="nav-number">3.3.</span> <span class="nav-text">四大域对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EL和JSTL"><span class="nav-number">3.4.</span> <span class="nav-text">EL和JSTL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filter-amp-Listener组件"><span class="nav-number">3.5.</span> <span class="nav-text">Filter&amp;Listener组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX"><span class="nav-number">4.</span> <span class="nav-text">AJAX</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX优点"><span class="nav-number">4.1.</span> <span class="nav-text">AJAX优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX技术应用步骤"><span class="nav-number">4.2.</span> <span class="nav-text">AJAX技术应用步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX-Json应用"><span class="nav-number">4.3.</span> <span class="nav-text">AJAX+Json应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Json"><span class="nav-number">4.3.1.</span> <span class="nav-text">Json</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jquery和AJAX"><span class="nav-number">4.4.</span> <span class="nav-text">Jquery和AJAX</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax-函数"><span class="nav-number">4.4.1.</span> <span class="nav-text">$.ajax()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get-函数"><span class="nav-number">4.4.2.</span> <span class="nav-text">$.get()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#post-函数"><span class="nav-number">4.4.3.</span> <span class="nav-text">$.post()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getJSON函数"><span class="nav-number">4.4.4.</span> <span class="nav-text">$.getJSON函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#load-函数"><span class="nav-number">4.4.5.</span> <span class="nav-text">load()函数</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">易慕晓生</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=create by yimu"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=create by yimu"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=create by yimu"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=create by yimu"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=create by yimu"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

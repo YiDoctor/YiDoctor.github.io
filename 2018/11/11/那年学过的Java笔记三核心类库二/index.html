@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=create by yimu" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=create by yimu">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=create by yimu">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=create by yimu">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=create by yimu" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, yimu">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="集合类 数组和集合的比较数组的特点:  本质上就是一段连续的存储空间，用于记录多个类型相同的数据。 支持下标访问，可以实现随机访问。 数组一旦定义则长度固定，无法自动调整内存空间的大小。 增删元素不方便，可能会造成大量元素的移动。 数组元素可以是基本数据类型，也可以是引用数据类型。  集合的特点:  内存空间可以连续也可以不连续，数据类型可以不相同。 部分支持下标访问，部分不支持。 集合的存储空间">
+<meta name="keywords" content="专注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="那年学过的Java笔记三核心类库二">
+<meta property="og:url" content="http://yoursite.com/2018/11/11/那年学过的Java笔记三核心类库二/index.html">
+<meta property="og:site_name" content="易慕晓生">
+<meta property="og:description" content="集合类 数组和集合的比较数组的特点:  本质上就是一段连续的存储空间，用于记录多个类型相同的数据。 支持下标访问，可以实现随机访问。 数组一旦定义则长度固定，无法自动调整内存空间的大小。 增删元素不方便，可能会造成大量元素的移动。 数组元素可以是基本数据类型，也可以是引用数据类型。  集合的特点:  内存空间可以连续也可以不连续，数据类型可以不相同。 部分支持下标访问，部分不支持。 集合的存储空间">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/8LGA6DY.png">
+<meta property="og:image" content="https://i.imgur.com/JJYF9tc.png">
+<meta property="og:image" content="https://i.imgur.com/XWUeWf8.png">
+<meta property="og:image" content="https://i.imgur.com/GyiFbRA.png">
+<meta property="og:image" content="https://i.imgur.com/6bhR3jY.png">
+<meta property="og:image" content="https://i.imgur.com/BKUCq9l.png">
+<meta property="og:image" content="https://i.imgur.com/b6tixsV.png">
+<meta property="og:image" content="https://i.imgur.com/NVzHvH1.png">
+<meta property="og:image" content="https://i.imgur.com/NK04qFZ.png">
+<meta property="og:image" content="https://i.imgur.com/3qFjxef.png">
+<meta property="og:image" content="https://i.imgur.com/2MOgjNl.png">
+<meta property="og:image" content="https://i.imgur.com/QN8W51Q.png">
+<meta property="og:updated_time" content="2018-11-11T04:47:28.975Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="那年学过的Java笔记三核心类库二">
+<meta name="twitter:description" content="集合类 数组和集合的比较数组的特点:  本质上就是一段连续的存储空间，用于记录多个类型相同的数据。 支持下标访问，可以实现随机访问。 数组一旦定义则长度固定，无法自动调整内存空间的大小。 增删元素不方便，可能会造成大量元素的移动。 数组元素可以是基本数据类型，也可以是引用数据类型。  集合的特点:  内存空间可以连续也可以不连续，数据类型可以不相同。 部分支持下标访问，部分不支持。 集合的存储空间">
+<meta name="twitter:image" content="https://i.imgur.com/8LGA6DY.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: 'create by yimu',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/11/那年学过的Java笔记三核心类库二/">
+
+
+
+
+
+  <title>那年学过的Java笔记三核心类库二 | 易慕晓生</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">易慕晓生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/那年学过的Java笔记三核心类库二/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="易慕晓生">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="易慕晓生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">那年学过的Java笔记三核心类库二</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T12:49:11+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/你那么努力总得给自己留点记忆/" itemprop="url" rel="index">
+                    <span itemprop="name">你那么努力总得给自己留点记忆</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h2><p><img src="https://i.imgur.com/8LGA6DY.png" alt=""></p>
+<h3 id="数组和集合的比较"><a href="#数组和集合的比较" class="headerlink" title="数组和集合的比较"></a>数组和集合的比较</h3><p><strong>数组的特点:</strong></p>
+<ul>
+<li>本质上就是一段连续的存储空间，用于记录多个类型相同的数据。</li>
+<li>支持下标访问，可以实现随机访问。</li>
+<li>数组一旦定义则长度固定，无法自动调整内存空间的大小。</li>
+<li>增删元素不方便，可能会造成大量元素的移动。</li>
+<li>数组元素可以是基本数据类型，也可以是引用数据类型。</li>
+</ul>
+<p><strong>集合的特点:</strong></p>
+<ul>
+<li>内存空间可以连续也可以不连续，数据类型可以不相同。</li>
+<li>部分支持下标访问，部分不支持。</li>
+<li>集合的存储空间长度不固定，可以随时自动调整大小。</li>
+<li>增删元素方便，可以不移动任何元素。</li>
+<li>集合元素必须是引用数据类型。    <a id="more"></a>
+<h3 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h3></li>
+</ul>
+<p>在Java中集合框架的顶层接口是：java.util.Collection接口 和 java.util.Map接口。<br><strong>其中Collection接口中操作元素的基本单位是：单个元素。<br>其中Map接口中操作元素的基本单位是：单对元素。</strong><br>在以后的开发中Collection接口本身很少使用，更多的是该接口的子接口：List接口、Queue接口、Set接口。</p>
+<h3 id="Collection接口的常用方法"><a href="#Collection接口的常用方法" class="headerlink" title="Collection接口的常用方法"></a>Collection接口的常用方法</h3><pre><code>boolean add(E e) - 用于将参数指定的元素e放入当前集合中。
+- 若当前集合发生改变则返回true，否则返回false。
+boolean addAll(Collection&lt;? extends E&gt; c) 
+- 用于将参数指定集合c中的所有元素放入当前集合中。
+
+boolean remove(Object o) 
+- 用于从当前集合中移除参数o指定的单个元素。
+boolean removeAll(Collection&lt;?&gt; c) 
+- 用于从当前集合中移除参数c指定的所有元素。
+void clear() 
+- 用于移除当前集合中的所有元素，也就是清空当前集合。
+
+boolean contains(Object o) 
+- 用于判断当前集合中是否包含参数指定的单个元素。
+boolean containsAll(Collection&lt;?&gt; c) 
+- 用于判断当前集合中是否包含参数指定的所有元素。
+
+int size() - 用于获取当前集合中的元素个数并返回。
+boolean isEmpty() - 判断当前集合是否为空。
+boolean retainAll(Collection&lt;?&gt; c) 
+- 用于计算当前集合和参数集合中的交集并保留到当前集合中。
+- 若当前集合中的元素发生改变则返回true，否则返回false。
+</code></pre><h2 id="List集合"><a href="#List集合" class="headerlink" title="List集合"></a>List集合</h2><p><img src="https://i.imgur.com/JJYF9tc.png" alt=""></p>
+<p><strong>基本概念</strong></p>
+<p>java.util.List接口是Collection接口的子接口，元素有放入先后次序，并且允许重复。</p>
+<p><strong>该接口的主要实现类有：ArrayList类、LinkedList类、Stack类、Vector类</strong></p>
+<pre><code>其中ArrayList类的底层是采用动态数组实现的，因此访问元素方便，增删元素不方便。
+其中LinkedList类的底层是采用双向链表实现的，因此访问元素不方便，增删元素方便。
+其中Stack类的底层是采用动态数组实现的，该类主要描述具有后进先出特性的数据结构，简称为LIFO(last in first out 栈)。 
+其中Vector类的底层是采用动态数组实现的，与ArrayList类相比，是Java早期提供的类，属于线程安全的类，因此效率比较低，推荐使用ArrayList类取代之。
+</code></pre><h3 id="常用的方法"><a href="#常用的方法" class="headerlink" title="常用的方法"></a>常用的方法</h3><pre><code>void add(int index, E element) - 用于将元素element插入到当前集合中index的位置。
+boolean addAll(int index, Collection&lt;? extends E&gt; c)  
+- 用于将集合c中的所有元素插入到当前集合中index的位置。
+E remove(int index) - 用于删除当前集合中下标为index位置的元素并返回。
+E set(int index, E element) 
+- 用于将当前集合中index位置的元素替换为element并返回之前的元素值。
+E get(int index) - 用于获取当前集合中index位置的元素并返回。
+
+List&lt;E&gt; subList(int fromIndex, int toIndex) 
+- 用于获取当前集合中从fromIndex(含)到toIndex(不含)之间的部分视图并返回。
+- 所谓视图就是并没有申请新的内存空间去单独存放可以看到的元素。
+</code></pre><h2 id="泛型机制"><a href="#泛型机制" class="headerlink" title="泛型机制"></a>泛型机制</h2><p><img src="https://i.imgur.com/XWUeWf8.png" alt=""></p>
+<p>通常情况下，集合中允许存放不同类型的数据内容，是因为这些数据全部被看做Object类型放入的，当需要从集合中取出元素时则也只能按照Object类型来处理，若希望表达该元素真实的数据类型时，就需要进行强制类型转换，而该方法容易引发类型转换异常。<br>为了避免上述错误的发生，从jdk1.5开始引入泛型机制，也就是在每个集合类型的右侧使用&lt;数据类型&gt;的方式明确要求该集合可以存放的元素类型，若放入元素类型不匹配则编译报错。</p>
+<pre><code>如：
+List&lt;String&gt; l1 = new LinkedList&lt;String&gt;();
+</code></pre><p>原理(尽量理解)：<br>泛型的本质就是参数化类型，也就是让数据类型作为参数进行传递的过程。其中List集合中的E相当于形式参数进行占位，而使用List集合时&lt;&gt;中的数据类型相当于实际参数对形式参数进行赋值，当赋值完毕后则List集合中所有的E都会被&lt;&gt;中的类型加以替换，而实际参数的种类可以是多样的，因此导致同一个List集合却能处理各种不同类型的数据，支持更加广泛的类型，从而得名”泛型”。</p>
+<h2 id="Queue接口-重点"><a href="#Queue接口-重点" class="headerlink" title="Queue接口(重点)"></a>Queue接口(重点)</h2><p><strong>基本概念</strong><br>java.util.Queue接口是Collection接口的子接口，与List接口属于平级关系。<br><strong>该接口主要用于描述一种具有先进先出特征的数据结构，简称为FIFO(first in first out)</strong><br>该接口的主要实现类是：LinkedList类。 </p>
+<p><strong>常用的方法</strong></p>
+<pre><code>boolean offer(E e) - 用于将参数指定的元素e插入到当前队列中的末尾。
+E poll() - 用于获取并移除当前队列中的队首元素，若队列为空，则返回null。
+E peek() - 用于获取队首元素并返回，若队列为空，则返回null。
+</code></pre><h2 id="Set接口-重点"><a href="#Set接口-重点" class="headerlink" title="Set接口(重点)"></a>Set接口(重点)</h2><p><img src="https://i.imgur.com/GyiFbRA.png" alt=""><br><strong>1 基本概念</strong></p>
+<p>java.util.Set接口是Collection接口的子接口，元素没有放入次序并且不允许重复。<br><strong>该接口的主要实现类有：HashSet类 和 TreeSet类。<br>其中HashSet类的底层是采用哈希表进行数据的管理。<br>其中TreeSet类的底层是采用二叉树进行数据的管理。</strong>   </p>
+<h3 id="常用的方法-1"><a href="#常用的方法-1" class="headerlink" title="常用的方法"></a>常用的方法</h3><pre><code>参考Collection集合的方法即可。 
+Iterator&lt;E&gt; iterator() - 用于获取当前集合的迭代器对象，可以访问集合中的每个元素
+boolean hasNext() - 用于判断当前集合中是否拥有元素可以迭代/遍历/访问。
+E next() - 用于获取一个元素并指向下一个位置。
+void remove() - 用于从集合中移除刚刚获取到的元素。
+
+注意：
+当迭代集合中的所有元素时，若希望删除某个元素则需要使用迭代器自己的remove()方法，若使用集合的remove()方法则会引发并发修改异常。
+</code></pre><h3 id="增强版的for循环-for-each"><a href="#增强版的for循环-for-each" class="headerlink" title="增强版的for循环(for each)"></a>增强版的for循环(for each)</h3><pre><code>(1)语法格式
+    for(元素类型 变量名 : 数组名/集合名){
+        循环体;
+    }
+
+(2)执行流程
+不断地从数组/集合中取出元素并赋值给变量名，然后执行循环体，直到处理完毕所有元素
+
+总结：
+对于Set集合来说，遍历所有元素的方式有3种：toString()、迭代器、增强版for循环。
+对于List集合来说，遍历方式除了上述3种之外，还有 get()方法的获取。
+</code></pre><h3 id="TreeSet类"><a href="#TreeSet类" class="headerlink" title="TreeSet类"></a>TreeSet类</h3><p>什么是二叉树？<br>二叉树就是指每个节点最多只有<strong>两个子节点的树形结构</strong>。</p>
+<p><strong>什么是有序二叉树？</strong><br><img src="https://i.imgur.com/6bhR3jY.png" alt=""><br>有序二叉树就是指满足以下3个条件的二叉树，又叫做二叉查找树。</p>
+<ul>
+<li>要求左子树中任意节点的元素值都小于根节点元素值；</li>
+<li>要求右子树中任意节点的元素值都大于根节点元素值；</li>
+<li>左子树和右子树的内部也要遵循上述规则；<br><strong>向TreeSet类中放入元素</strong><br>当需要添加元素到TreeSet集合时，需要指定元素比较大小的规则，具体方式如下：<br>a.使用元素的自然排序进行处理，也就是让元素类型实现java.lang.Comparable接口；<br>b.使用比较器进行处理，也就是创建TreeSet对象时传入java.util.Comparator接口；</li>
+</ul>
+<p><strong>注意：</strong><br>当创建TreeSet集合时没有传入比较器则采用元素的自然排序规则进行处理，若传入比较器则按照比较器的规则进行处理，并且使用比较器可以实现多元化的排序。</p>
+<h2 id="Map接口-重点"><a href="#Map接口-重点" class="headerlink" title="Map接口(重点)"></a>Map接口(重点)</h2><p><img src="https://i.imgur.com/BKUCq9l.png" alt=""><br>1 基本概念<br>java.util.Map&lt;K,V&gt;接口中操作元素的基本单位是：单对元素，具体格式如下：<br>K - 此映射所维护的键(Key)的类型<br>V - 映射值(Value)的类型<br>该接口中不能包含重复的key，并且一个key最多只能对应一个value。<br>该接口的主要实现类为：HashMap类 和 TreeMap类。</p>
+<p>2 常用的方法</p>
+<pre><code>V put(K key, V value) - 使用参数指定的key和value组成一对放入当前集合中。
+- 若当前集合中没有key则返回null，否则返回key之前对应的value.
+V remove(Object key) - 用于从当前集合中移除参数key指定的元素。
+boolean containsKey(Object key) - 用于判断当前集合是否包含参数指定的key.
+boolean containsValue(Object value) - 用于判断当前集合是否包含参数指定的value.
+V get(Object key) - 用于根据参数指定的key返回对应的value。
+
+Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet()  
+- 用于将当前调用对象表示的Map集合转换为Set集合并返回。
+K getKey() - 用于获取Entry类型变量中的key并返回。
+V getValue() - 用于获取Entry类型变量中的value并返回。
+Set&lt;K&gt; keySet() 
+- 用于将当前调用对象表示的Map集合中所有的Key组成Set集合并返回。
+</code></pre><h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p><strong>HashMap原理:</strong><br><img src="https://i.imgur.com/b6tixsV.png" alt=""></p>
+<p><strong>HashMap性能:</strong><br><img src="https://i.imgur.com/NVzHvH1.png" alt=""></p>
+<h2 id="异常机制"><a href="#异常机制" class="headerlink" title="异常机制"></a>异常机制</h2><p><img src="https://i.imgur.com/NK04qFZ.png" alt=""></p>
+<h2 id="File类-重点"><a href="#File类-重点" class="headerlink" title="File类(重点)"></a>File类(重点)</h2><p><strong>基本概念</strong><br>java.io.File类用于描述指定路径信息的文件或目录，可以获取相关的属性信息，大小等</p>
+<p><strong>常用的方法</strong></p>
+<pre><code>File(String pathname) - 根据参数指定的路径名来构造对象进行关联。
+boolean exists() - 用于判断文件或目录是否存在。
+String getName() - 用于获取文件或目录的名称。
+long length() - 用于获取文件的长度/大小。
+long lastModified() - 用于获取文件的最后一次修改时间，需要与Date类搭配使用。
+String getAbsolutePath() - 用于获取绝对路径信息并返回。
+绝对路径 - 主要指以根目录开始的路径信息，如：C:/..  D:/...  /...
+相对路径 - 主要指以当前所在目录开始的路径信息，如：./...
+    - 以后的开发中推荐使用相对路径的方式。
+boolean delete() - 用于删除文件或目录。
+boolean createNewFile() - 用于创建新的空文件。
+
+boolean mkdir() - 用于创建单层目录。
+boolean mkdirs() - 用于创建多层目录。
+
+File[] listFiles() - 用于获取当前目录中的所有内容并返回。
+boolean isFile() - 用于判断是否为标准文件。
+boolean isDirectory() - 用于判断是否为目录文件。
+</code></pre><h2 id="I-O流"><a href="#I-O流" class="headerlink" title="I/O流"></a>I/O流</h2><p><strong>基本概念</strong></p>
+<p>I/O就是Input/Output的简写，也就是表示输入/输出的含义。<br>I/O流就是指像流水一样不间断地进行数据的读写过程。</p>
+<p><strong>基本分类</strong></p>
+<p>以读写数据的单位不同分为：<strong>字节流和字符流。</strong><br>其中字节流就是指以字节为单位进行读写的流，可以读写任意类型的文件。<br>其中字符流就是指以字符(2个字节)为单位进行读写的流，只能读写文本文件。</p>
+<p>以数据流动的方向不同分为：<strong>输入流和输出流</strong>(站在程序的角度)。<br>其中输入流就是指将数据内容输入到程序中的流，也就是读文件。<br>其中输出流就是指将数据内容从程序中输出，也就是写文件。</p>
+<p><strong>基本框架</strong></p>
+<p><img src="https://i.imgur.com/3qFjxef.png" alt=""></p>
+<h2 id="FileOutputStream类-重中之重"><a href="#FileOutputStream类-重中之重" class="headerlink" title="FileOutputStream类(重中之重)"></a>FileOutputStream类(重中之重)</h2><p><img src="https://i.imgur.com/2MOgjNl.png" alt=""></p>
+<p>基本概念<br>java.io.FileOutputStream类用于将图像数据之类的原始字节流写入到输出流中。</p>
+<p>常用的方法</p>
+<pre><code>FileOutputStream(String name) - 根据参数指定的路径名来构造对象。
+FileOutputStream(String name, boolean append) - 用于以追加的方式构造对象。
+void write(int b) - 用于将参数指定的单个字节写入输出流。
+void write(byte[] b, int off, int len) 
+- 用于将数组b中从off位置开始的len个字节写入输出流。
+void write(byte[] b) 
+- 用于将数组b中的所有字节写入输出流。
+void close() - 用于关闭流对象并释放有关的资源。
+</code></pre><h3 id="FileInputStream类-重中之重"><a href="#FileInputStream类-重中之重" class="headerlink" title="FileInputStream类(重中之重)"></a>FileInputStream类(重中之重)</h3><p>基本概念<br>java.io.FileInputStream类用于读取图像数据之类的原始字节流。</p>
+<p>常用的方法</p>
+<pre><code>FileInputStream(String name) - 根据参数指定的文件名来构造对象。
+int read() - 用于从输入流中读取一个字节的数据并返回，若读到文件末尾则返回-1。
+int read(byte[] b, int off, int len) 
+- 用于从输入流中读取len个字节放入数组b中下标为off的位置上。
+- 成功返回实际读取到的字节数，若读到文件末尾则返回-1。
+int read(byte[] b) 
+- 用于从输入流中读取b.length个字节放入数组b中。
+int available() 
+- 用于获取此输入流所关联文件的大小。
+void close() - 用于关闭流对象并释放有关的资源。
+</code></pre><h3 id="DataOutputStream类-熟悉"><a href="#DataOutputStream类-熟悉" class="headerlink" title="DataOutputStream类(熟悉)"></a>DataOutputStream类(熟悉)</h3><p>基本概念<br>java.io.DataOutputStream类主要用于将Java语言中基本数据类型的内容写入输出流中。</p>
+<p>常用的方法</p>
+<pre><code>DataOutputStream(OutputStream out) - 根据参数指定的引用来构造对象。
+- 其中OutputStream类是个抽象类，实参需要传递子类的对象。
+void writeInt(int v) - 用于将参数指定的整数以4个字节的形式写入输出流中。
+- 优先写入高字节数据，如：12: 0000 0000   0000 0000    0000 0000  0000 1100 
+void close()
+</code></pre><h3 id="DataInputStream类-熟悉"><a href="#DataInputStream类-熟悉" class="headerlink" title="DataInputStream类(熟悉)"></a>DataInputStream类(熟悉)</h3><p>基本概念<br>java.io.DataInputStream类用于从输入流中读取Java基本数据类型的内容。</p>
+<p>常用的方法</p>
+<pre><code>DataInputStream(InputStream in) - 根据参数指定的引用来构造对象。
+- 其中InputStream类是个抽象类，实参需要传递子类的对象。
+int readInt() - 用于读取一个整数并返回。
+void close()
+</code></pre><h3 id="BufferedWriter类-重点"><a href="#BufferedWriter类-重点" class="headerlink" title="BufferedWriter类(重点)"></a>BufferedWriter类(重点)</h3><p>基本概念<br>java.io.BufferedWriter类用于写入单个字符、字符数组以及整个字符串到输出流中。</p>
+<p>常用的方法  </p>
+<pre><code>BufferedWriter(Writer out) - 根据参数指定的引用来构造对象。
+- 其中Writer类是个抽象类，因此实参需要传递子类的对象。
+void write(int c) - 用于写入参数指定的单个字符。
+void write(char[] cbuf, int off, int len) 
+- 用于将参数cbuf中下标从off位置开始的len个字符写入输出流。
+void write(char[] cbuf)
+- 用于将参数cbuf中整个字符数组的内容写入输出流。
+void write(String s, int off, int len) 
+- 用于将参数s中从off位置开始的len个字符写入输出流中。
+void write(String str)
+- 用于将参数str指向的整个字符串写入输出流中。
+void newLine() - 用于写入一个行分隔符。
+void close() 
+</code></pre><h3 id="BufferedReader类-重点"><a href="#BufferedReader类-重点" class="headerlink" title="BufferedReader类(重点)"></a>BufferedReader类(重点)</h3><p>基本概念<br>java.io.BufferedReader类用于从输入流中读取单个字符、字符数组以及一行字符串内容。</p>
+<p>常用的方法</p>
+<pre><code>BufferedReader(Reader in) - 根据参数指定的引用来构造对象。
+- 其中Reader类是个抽象类，实参需要传递子类的对象。
+int read() - 用于读取单个字符并返回。
+int read(char[] cbuf, int off, int len) 
+- 用于读取len个字符放入字符数组cbuf中下标从off开始的位置。 
+int read(char[] cbuf)
+- 用于读取cbuf.length个字符放入字符数组中。
+String readLine() 
+- 用于读取一行字符串并返回。
+void close()
+</code></pre><h3 id="PrintStream类-重点"><a href="#PrintStream类-重点" class="headerlink" title="PrintStream类(重点)"></a>PrintStream类(重点)</h3><p>基本概念<br>java.io.PrintStream类用于实现各种数据格式的打印/输出。</p>
+<p>常用的方法</p>
+<pre><code>PrintStream(OutputStream out) - 根据参数指定的引用来构造对象。
+- 其中OutputStream类是个抽象类，实参需要传递子类的对象。
+void print(String s) - 用于输出参数指定的字符串。
+void println(String x) - 用于输出字符串后换行。
+void close() 
+</code></pre><h3 id="ObjectOutputStream类-重点"><a href="#ObjectOutputStream类-重点" class="headerlink" title="ObjectOutputStream类(重点)"></a>ObjectOutputStream类(重点)</h3><p><img src="https://i.imgur.com/QN8W51Q.png" alt=""></p>
+<p>基本概念<br>java.io.ObjectOutputStream类主要用于将Java语言中的对象整体写入输出流中。<br>只能将支持 java.io.Serializable 接口的对象写入流中<br>类通过实现 java.io.Serializable 接口以启用其序列化功能。<br>序列化就是指将一个对象的相关信息有效组织成一个字节序列的过程，反之就叫做反序列化</p>
+<p>常用的方法</p>
+<pre><code>ObjectOutputStream(OutputStream out) - 根据参数指定的引用构造对象。
+- 其中OutputStream类是个抽象类，实参需要传递子类的对象。
+void writeObject(Object obj) 
+- 用于将参数指定的对象整体写入输出流。
+void close()
+</code></pre><h3 id="ObjectIntputStream类-重点"><a href="#ObjectIntputStream类-重点" class="headerlink" title="ObjectIntputStream类(重点)"></a>ObjectIntputStream类(重点)</h3><p>基本概念<br>java.io.ObjectInputStream类用于将之前写入的对象整体读取出来。</p>
+<p>常用的方法  </p>
+<pre><code>ObjectInputStream(InputStream in) - 根据参数指定引用来构造对象。
+- 其中InputStream类是抽象类，实参传递子类的对象。
+Object readObject() - 用于读取一个对象并返回。
+void close()
+</code></pre><p>经验的分享：<br>当需要将多个对象写入文件时，通常建议将多个对象放入一个集合中，然后将这个集合看做一个对象整体写入文件中，此时只需要写入一次，而读取文件中的内容时，可以一次性将整个集合读取出来。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>求打赏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="易慕晓生 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="易慕晓生 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/11/那年学过的Java笔记二SE面向对象/" rel="next" title="那年学过的Java笔记二SE面向对象">
+                <i class="fa fa-chevron-left"></i> 那年学过的Java笔记二SE面向对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/11/那年学过的Java笔记三核心类库三/" rel="prev" title="那年学过的Java笔记三核心类库三">
+                那年学过的Java笔记三核心类库三 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">易慕晓生</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心 方得始终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YDoctor" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:825742394@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#集合类"><span class="nav-number">1.</span> <span class="nav-text">集合类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组和集合的比较"><span class="nav-number">1.1.</span> <span class="nav-text">数组和集合的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合框架"><span class="nav-number">1.2.</span> <span class="nav-text">集合框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection接口的常用方法"><span class="nav-number">1.3.</span> <span class="nav-text">Collection接口的常用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List集合"><span class="nav-number">2.</span> <span class="nav-text">List集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的方法"><span class="nav-number">2.1.</span> <span class="nav-text">常用的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型机制"><span class="nav-number">3.</span> <span class="nav-text">泛型机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Queue接口-重点"><span class="nav-number">4.</span> <span class="nav-text">Queue接口(重点)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set接口-重点"><span class="nav-number">5.</span> <span class="nav-text">Set接口(重点)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的方法-1"><span class="nav-number">5.1.</span> <span class="nav-text">常用的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强版的for循环-for-each"><span class="nav-number">5.2.</span> <span class="nav-text">增强版的for循环(for each)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TreeSet类"><span class="nav-number">5.3.</span> <span class="nav-text">TreeSet类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map接口-重点"><span class="nav-number">6.</span> <span class="nav-text">Map接口(重点)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-number">6.1.</span> <span class="nav-text">HashMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常机制"><span class="nav-number">7.</span> <span class="nav-text">异常机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File类-重点"><span class="nav-number">8.</span> <span class="nav-text">File类(重点)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O流"><span class="nav-number">9.</span> <span class="nav-text">I/O流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FileOutputStream类-重中之重"><span class="nav-number">10.</span> <span class="nav-text">FileOutputStream类(重中之重)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FileInputStream类-重中之重"><span class="nav-number">10.1.</span> <span class="nav-text">FileInputStream类(重中之重)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataOutputStream类-熟悉"><span class="nav-number">10.2.</span> <span class="nav-text">DataOutputStream类(熟悉)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataInputStream类-熟悉"><span class="nav-number">10.3.</span> <span class="nav-text">DataInputStream类(熟悉)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BufferedWriter类-重点"><span class="nav-number">10.4.</span> <span class="nav-text">BufferedWriter类(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BufferedReader类-重点"><span class="nav-number">10.5.</span> <span class="nav-text">BufferedReader类(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PrintStream类-重点"><span class="nav-number">10.6.</span> <span class="nav-text">PrintStream类(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ObjectOutputStream类-重点"><span class="nav-number">10.7.</span> <span class="nav-text">ObjectOutputStream类(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ObjectIntputStream类-重点"><span class="nav-number">10.8.</span> <span class="nav-text">ObjectIntputStream类(重点)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">易慕晓生</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=create by yimu"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=create by yimu"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=create by yimu"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=create by yimu"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=create by yimu"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

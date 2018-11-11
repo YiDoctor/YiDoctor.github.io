@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=create by yimu" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=create by yimu">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=create by yimu">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=create by yimu">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=create by yimu" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, yimu">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Nosql简介NoSQL指的是非关系型的数据库。其实，NoSQL概念最早出现在1998年，当时的含义是反SQL技术革命运动，但并未引起太多的关注。直到2009年，NoSQL概念被来自Rackspace的EricEvans再次提出，这时的NoSQL已经不是单纯的反SQL运动，指的主要是非关系型的分布式数据库，并且不支持原子性(Atomicity)、一致性(Consistency)、隔离性(Isola">
+<meta name="keywords" content="专注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nosql进阶笔记之redis MongoDB">
+<meta property="og:url" content="http://yoursite.com/2018/11/11/Nosql进阶笔记之redis MongoDB/index.html">
+<meta property="og:site_name" content="易慕晓生">
+<meta property="og:description" content="Nosql简介NoSQL指的是非关系型的数据库。其实，NoSQL概念最早出现在1998年，当时的含义是反SQL技术革命运动，但并未引起太多的关注。直到2009年，NoSQL概念被来自Rackspace的EricEvans再次提出，这时的NoSQL已经不是单纯的反SQL运动，指的主要是非关系型的分布式数据库，并且不支持原子性(Atomicity)、一致性(Consistency)、隔离性(Isola">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/Vc0PwkN.png">
+<meta property="og:image" content="https://i.imgur.com/d9guB4A.png">
+<meta property="og:image" content="https://i.imgur.com/DlgDx9u.png">
+<meta property="og:updated_time" content="2018-11-11T04:27:30.338Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nosql进阶笔记之redis MongoDB">
+<meta name="twitter:description" content="Nosql简介NoSQL指的是非关系型的数据库。其实，NoSQL概念最早出现在1998年，当时的含义是反SQL技术革命运动，但并未引起太多的关注。直到2009年，NoSQL概念被来自Rackspace的EricEvans再次提出，这时的NoSQL已经不是单纯的反SQL运动，指的主要是非关系型的分布式数据库，并且不支持原子性(Atomicity)、一致性(Consistency)、隔离性(Isola">
+<meta name="twitter:image" content="https://i.imgur.com/Vc0PwkN.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: 'create by yimu',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/11/Nosql进阶笔记之redis MongoDB/">
+
+
+
+
+
+  <title>Nosql进阶笔记之redis MongoDB | 易慕晓生</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">易慕晓生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/Nosql进阶笔记之redis MongoDB/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="易慕晓生">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="易慕晓生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Nosql进阶笔记之redis MongoDB</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T12:49:11+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/你那么努力总得给自己留点记忆/" itemprop="url" rel="index">
+                    <span itemprop="name">你那么努力总得给自己留点记忆</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Nosql"><a href="#Nosql" class="headerlink" title="Nosql"></a>Nosql</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>NoSQL指的是非关系型的数据库。其实，NoSQL概念最早出现在1998年，当时的含义是反SQL技术革命运动，但并未引起太多的关注。直到2009年，NoSQL概念被来自Rackspace的EricEvans再次提出，这时的NoSQL已经不是单纯的反SQL运动，指的主要是非关系型的分布式数据库，并且不支持原子性(Atomicity)、一致性(Consistency)、隔离性(Isolation)、持久性(Durability)的数据库设计模式。在亚特兰大举行的有关NoSQL的讨论会上，学者给出了NoSQL较为普遍的解释，即“非关系型的”。并且指出<strong>Key-Value存储和文档数据库</strong>是NoSQL的主要特点。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>1：key-value存储<br>2：最终一致性<br>3：可拓展<br><a id="more"></a></p>
+<h3 id="NoSQL和关系型数据库"><a href="#NoSQL和关系型数据库" class="headerlink" title="NoSQL和关系型数据库"></a>NoSQL和关系型数据库</h3><h4 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h4><pre><code>优势:
+    1.擅长小数据量的处理
+    2.擅长复杂的SQL操作,可以进行Join等复杂查询
+    3.可以方便的生成各种数据对象，利用存储的数据建立窗体和报表，可视性好
+
+劣势：
+    1.很难进行分布式应用和大量数据的写入处理
+    2.为有数据更新的表做索引和结构变更
+    3.字段不固定的应用
+    4.对简单查询需要快速返回结果的处理
+</code></pre><h4 id="NoSQL数据库"><a href="#NoSQL数据库" class="headerlink" title="NoSQL数据库"></a>NoSQL数据库</h4><pre><code>优势:
+    1.擅长大量数据的写入和读取
+    2.快速的查询响应,灵活的数据模型
+    3.数据结构变更或更新非常方便，不需要更改已有数据的数据结构
+    4.击碎了性能瓶颈，可以使执行速度变的更快
+
+劣势:
+    1.不提供复杂的API接口
+    2.一般仅提供key索引
+    3.不适合小数据的处理
+    4.现有产品的不够成熟,大多数产品都还处于初创期
+</code></pre><h3 id="NoSQL-数据库分类"><a href="#NoSQL-数据库分类" class="headerlink" title="NoSQL 数据库分类"></a>NoSQL 数据库分类</h3><p><img src="https://i.imgur.com/Vc0PwkN.png" alt=""></p>
+<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>Redis（REmote DIctionary Server）是一个开源的使用ANSI C语言编写、是一个由Salvatore Sanfilippo写的key-value存储系统，支持网络、可基于内存亦可持久化的日志型、并提供多种语言的API。<br>Redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。</p>
+<h3 id="Redis优点"><a href="#Redis优点" class="headerlink" title="Redis优点"></a>Redis优点</h3><ul>
+<li>性能极高 – Redis能读的速度是110000次/s,写的速度是81000次/s 。</li>
+<li>丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</li>
+<li>原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。</li>
+<li>丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。</li>
+<li>Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
+<li>Redis支持数据的备份，即master-slave模式的数据备份。</li>
+</ul>
+<h3 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h3><h4 id="string-字符串"><a href="#string-字符串" class="headerlink" title="string(字符串)"></a>string(字符串)</h4><p>string是redis最基本的类型，而且string类型是二进制安全的。意思是redis的string可以包含任何数据。比如jpg图片或者序列化的对象<br>从内部实现来看其实string可以看作byte数组，最大上限是1G字节<br>string类型的值也可视为integer，从而可以让“incr”命令族操作，这种情况下，该integer的值限制在64位有符号数<br>在list、set和zset中包含的独立的元素类型都是string类型<br>应用场景：String是最常用的一种数据类型,普通的key/value存储.</p>
+<h4 id="list-双向链表"><a href="#list-双向链表" class="headerlink" title="list(双向链表)"></a>list(双向链表)</h4><p>redis的list类型其实就是一个每个子元素都是string类型的双向链表，所以[lr]push和[lr]pop命令的算法时间复杂度都是O(1)，另外list会记录链表的长度，所以llen操作也是O(1).<br>可以通过push,pop操作从链表的头部或者尾部添加删除元素。这使得list既可以用作栈，也可以用作队列<br>list的最大长度是2^32-1个元素<br>应用场景：Redis list应用场景非常多,也是Redis最重要的数据结构之一,比如twitter的关注列表,粉丝列表等都可以用Redis的list结构来实现.</p>
+<h4 id="set-无序集合"><a href="#set-无序集合" class="headerlink" title="set(无序集合)"></a>set(无序集合)</h4><p>set就是redis string的无序集合，不允许有重复元素<br>set的最大元素数是2^32-1<br>对set的操作还有交集、并集、差集等<br>应用场景：Set对外提供的功能与list类似,当你需要存储一个列表数据,又不希望出现重复数据时,set 是一个很好的选择,并且set提供了判断某个成员是否在一个set集合内的接口,这个也是list所不能提供的</p>
+<h4 id="Sorted-set-有序集合-–-zset"><a href="#Sorted-set-有序集合-–-zset" class="headerlink" title="Sorted set(有序集合)– zset"></a>Sorted set(有序集合)– zset</h4><p>zset是set的一个升级版本，在set的基础上增加了一个顺序属性，这一属性在添加修改元素时可以指定，每次指定后zset会自动安装指定值重新调整顺序。可以理解为一张表，一列存value，一列存顺序。操作中的key理解为zset的名字。<br>zset的最大元素数是2^32-1。<br>对于已经有序的zset，仍然可以使用sort命令，通过指定asc|desc参数对其进行排序。<br>应用场景：Sorted set的使用场景与set类似,区别是set不是自动有序的,而sorted set可以通过用户额外提供一个优先级(score)的参数来为成员排序,并且是插入有序的,即自动排序.当你需要一个有序的并且不重复的集合列表,那么可以选择sorted set数据结构</p>
+<h4 id="hash-hash表"><a href="#hash-hash表" class="headerlink" title="hash(hash表)"></a>hash(hash表)</h4><p>redis Hash类型对数据域和值提供了映射，这一结构很方便表示对象<br>在Hash中可以只保存有限的几个“域”，而不是将所有的“域”作为key，这可以节省内存</p>
+<h3 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h3><h4 id="Value操作命令"><a href="#Value操作命令" class="headerlink" title="Value操作命令"></a>Value操作命令</h4><pre><code>exists(key)：确认一个key是否存在
+del(key)：删除一个key
+type(key)：返回值的类型
+keys(pattern)：返回满足给定pattern的所有key
+randomkey：随机返回key空间的一个
+keyrename(oldname, newname)：重命名key
+dbsize：返回当前数据库中key的数目
+expire：设定一个key的活动时间（s）
+ttl：获得一个key的活动时间
+select(index)：按索引查询
+move(key, dbindex)：移动当前数据库中的key到dbindex数据库
+flushdb：删除当前选择数据库中的所有key
+flushall：删除所有数据库中的所有key
+</code></pre><h4 id="string操作的命令"><a href="#string操作的命令" class="headerlink" title="string操作的命令"></a>string操作的命令</h4><pre><code>set(key, value)：给数据库中名称为key的string赋予值value
+get(key)：返回数据库中名称为key的string的value
+getset(key, value)：给名称为key的string赋予上一次的value
+mget(key1, key2,…, key N)：返回库中多个string的value
+setnx(key, value)：添加string，名称为key，值为value
+setex(key, time, value)：向库中添加string，设定过期时间time
+mset(key N, value N)：批量设置多个string的值
+msetnx(key N, value N)：如果所有名称为key i的string都不存在
+incr(key)：名称为key的string增1操作
+incrby(key, integer)：名称为key的string增加integer
+decr(key)：名称为key的string减1操作
+decrby(key, integer)：名称为key的string减少integer
+append(key, value)：名称为key的string的值附加value
+substr(key, start, end)：返回名称为key的string的value的子串
+</code></pre><h4 id="对List操作的命令"><a href="#对List操作的命令" class="headerlink" title="对List操作的命令"></a>对List操作的命令</h4><pre><code> rpush(key, value)：在名称为key的list尾添加一个值为value的元素
+lpush(key, value)：在名称为key的list头添加一个值为value的 元素
+llen(key)：返回名称为key的list的长度
+lrange(key, start, end)：返回名称为key的list中start至end之间的元素
+ltrim(key, start, end)：截取名称为key的list
+lindex(key, index)：返回名称为key的list中index位置的元素
+lset(key, index, value)：给名称为key的list中index位置的元素赋值
+lrem(key, count, value)：删除count个key的list中值为value的元素
+lpop(key)：返回并删除名称为key的list中的首元素
+rpop(key)：返回并删除名称为key的list中的尾元素
+blpop(key1, key2,… key N, timeout)：lpop命令的block版本。
+brpop(key1, key2,… key N, timeout)：rpop的block版本。
+rpoplpush(srckey, dstkey)：返回并删除名称为srckey的list的尾元素，并将该元素添加到名称为dstkey的list的头部
+</code></pre><h4 id="对Set操作的命令"><a href="#对Set操作的命令" class="headerlink" title="对Set操作的命令"></a>对Set操作的命令</h4><pre><code>sadd(key, member)：向名称为key的set中添加元素member
+srem(key, member) ：删除名称为key的set中的元素member
+spop(key) ：随机返回并删除名称为key的set中一个元素
+smove(srckey, dstkey, member) ：移到集合元素
+scard(key) ：返回名称为key的set的基数
+sismember(key, member) ：member是否是名称为key的set的元素
+sinter(key1, key2,…key N) ：求交集
+sinterstore(dstkey, (keys)) ：求交集并将交集保存到dstkey的集合
+sunion(key1, (keys)) ：求并集
+sunionstore(dstkey, (keys)) ：求并集并将并集保存到dstkey的集合
+sdiff(key1, (keys)) ：求差集
+sdiffstore(dstkey, (keys)) ：求差集并将差集保存到dstkey的集合
+smembers(key) ：返回名称为key的set的所有元素
+srandmember(key) ：随机返回名称为key的set的一个元素
+</code></pre><h4 id="对Hash操作的命令"><a href="#对Hash操作的命令" class="headerlink" title="对Hash操作的命令"></a>对Hash操作的命令</h4><pre><code>hset(key, field, value)：向名称为key的hash中添加元素field
+hget(key, field)：返回名称为key的hash中field对应的value
+hmget(key, (fields))：返回名称为key的hash中field i对应的value
+hmset(key, (fields))：向名称为key的hash中添加元素field 
+hincrby(key, field, integer)：将名称为key的hash中field的value增加integer
+hexists(key, field)：名称为key的hash中是否存在键为field的域
+hdel(key, field)：删除名称为key的hash中键为field的域
+hlen(key)：返回名称为key的hash中元素个数
+hkeys(key)：返回名称为key的hash中所有键
+hvals(key)：返回名称为key的hash中所有键对应的value
+hgetall(key)：返回名称为key的hash中所有的键（field）及其对应的value
+</code></pre><h3 id="Redis功能"><a href="#Redis功能" class="headerlink" title="Redis功能"></a>Redis功能</h3><h4 id="Redis发布-订阅"><a href="#Redis发布-订阅" class="headerlink" title="Redis发布/订阅"></a>Redis发布/订阅</h4><p>Redis的发布/订阅(Publish/Subscribe)功能类似于传统的消息路由功能,发布者发布消息,订阅者接收消息,沟通发布者和订阅者之间的桥梁是订阅的Channel或者Pattern.订阅者和发布者之间的关系是松耦合的,发布者不指定哪个订阅者才能接收消息,订阅者不只接收特定发布者的消息.</p>
+<h4 id="Redis事务支持"><a href="#Redis事务支持" class="headerlink" title="Redis事务支持"></a>Redis事务支持</h4><p>Redis目前对事务支持还比较简单,也即支持一些简单的组合型的命令,只能保证一个client发起的事务中的命令可以连续的执行,而中间不会插入其他client的命令. 由于Redis是单线程来处理所有client的请求的所以做到这点是很容易的.事务的执行过程中,如果redis意外的挂了,这时候事务可能只被执行了一半,可以用redis-check-aof 工具进行修复</p>
+<h4 id="Redis主从复制-集群"><a href="#Redis主从复制-集群" class="headerlink" title="Redis主从复制(集群)"></a>Redis主从复制(集群)</h4><pre><code>Master/Slave配置:
+
+Master IP:175.41.209.118
+
+Master Redis Server Port:6379
+
+Slave配置很简单,只需要在slave服务器的redis.conf加入:
+
+slaveof 175.41.209.118 6379
+
+启动master和slave,然后写入数据到master,读取slave,可以看到数据被复制到slave了.
+
+
+用途:读写分离,数据备份,灾难恢复等
+</code></pre><h4 id="Redis主从复制过程"><a href="#Redis主从复制过程" class="headerlink" title="Redis主从复制过程:"></a>Redis主从复制过程:</h4><p>配置好slave后,slave与master建立连接,然后发送sync命令. </p>
+<p>无论是第一次连接还是重新连接,master都会启动一个后台进程,将数据库快照保存到文件中,同时master主进程会开始收集新的写命令并缓存. </p>
+<p>后台进程完成写文件后,master就发送文件给slave,slave将文件保存到硬盘上,再加载到内存中。</p>
+<p>接着master就会把缓存的命令转发给slave,后续master将收到的写命令发送给slave. </p>
+<p>如果master同时收到多个slave发来的同步连接命令,master只会启动一个进程来写数据库镜像, 然后发送给所有的slave</p>
+<p><strong>Redis主从复制特点：</strong></p>
+<ol>
+<li>master可以拥有多个slave.</li>
+<li>多个slave可以连接同一个master外,还可以连接到其他slave.</li>
+<li>主从复制不会阻塞master,在同步数据时,master可以继续处理client请求.</li>
+<li>可以在master禁用数据持久化,注释掉master配置文件中的所有save配置,只需在slave上配置数据持久化.</li>
+<li>提高系统的伸缩性</li>
+<li><strong>Redis主从复制速度：</strong></li>
+</ol>
+<p>官方提供了一个数据, 㻿lave在21秒即完成了对Amazon网站 10G key set的复制.</p>
+<h4 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h4><p>由于Redis是内存数据库，它将自己的数据库状态存储在内存里面，所以如果不想办法将储存在内存中的数据库状态保存到磁盘里面，那么一旦服务器退出，服务器中的数据库状态也会消失不见。为了解决这个问题，Redis提供了RDB、AOF持久化方式，将内存中的数据保存到磁盘中，避免数据意外丢失</p>
+<p>（1）RDB是 Snapshotting（快照）也是默认方式： 快照是默认的持久化方式。这种方式将内存中数据以快照的方式写入到二进制文件中,默认的文件名为dump.rdb。可以配置自动做快照持久 化的方式。我们可以配置redis在n秒内如果超过m个key被修改就自动做快照<br>RDB持久化通过将服务器某个时间点上的数据库状态（非空数据库以及相关键值对）保存到一个RDB文件中，Redis服务器可以用它来还原数据库状态。 SAVE命令会阻塞Redis服务器进程。而BGSAVE会派生出一个子进程，然后由子进程负责创建RDB文件，服务器父进程继续处理命令请求。还可以SAVE命令设置自动间隔保存， 例如SAVE 60 10000 服务器在60秒之内，对数据库进行了至少10000次修改，自动执行BGSAVE命令。RDB文件是一个经过压缩的二进制文件。</p>
+<p>（2）AOF(Append-only file)： AOF持久化通过保存Redis服务器所执行的写命令来记录数据库状态的。被写入AOF文件的所有命令都是以Redis的命令请求协议格式保存的，Redis的命令请求协议保存为纯文本格式。AOF持久化功能的实现分为命令追加、文件写入、文件同步三个步骤：当AOF持久化处于打开状态时，服务器在执行完一个写命令后，会以协议格式将被执行的写命令（如SET、SADD、RPUSH）追加到服务器状态的aofbuf缓冲区的末尾。服务器在每次结束一个事件循环之前，它都会调用flushAppendOnlyFile函数，考虑是否需要将aof_buf缓冲区中的内容写入和保存到AOF文件里面。flushAppendOnlyFile函数的行为由服务器配置的appendfsync选项的值（ always 、 everysec（默认） 、 no ）来决定</p>
+<h4 id="RDB与AOF比较"><a href="#RDB与AOF比较" class="headerlink" title="RDB与AOF比较"></a>RDB与AOF比较</h4><p>RDB </p>
+<p>优点：RDB 是一个非常紧凑的文件，它保存了 Redis 在某个时间点上的数据集。这种文件非常适合用于进行备份。<br>缺点：如果你需要尽量避免在服务器故障时丢失数据，那么 RDB 不适合你。 虽然 Redis 允许你设置不同的保存点（save point）来控制保存 RDB 文件的频率， 但是， 因为RDB 文件需要保存整个数据集的状态，所以它并不是一个轻松的操作。因此你可能会至少 5 分钟才保存一次 RDB 文件。 在这种情况下， 一旦发生故障停机， 你就可能会丢失好几分钟的数据。</p>
+<p>AOF </p>
+<p>优点：使用 AOF 持久化会让 Redis 变得非常耐久：你可以设置不同的 fsync 策略，比如无 fsync ，每秒钟一次 fsync ，或者每次执行写入命令时 fsync 。 AOF 的默认策略为每秒钟 fsync 一次，在这种配置下，Redis 仍然可以保持良好的性能，并且就算发生故障停机，也最多只会丢失一秒钟的数据（ fsync 会在后台线程执行，所以主线程可以继续努力地处理命令请求）。<br>缺点：对于相同的数据集来说，AOF 文件的体积通常要大于 RDB 文件的体积。根据所使用的 fsync 策略，AOF 的速度可能会慢于 RDB 。</p>
+<h3 id="Java操作Redis"><a href="#Java操作Redis" class="headerlink" title="Java操作Redis"></a>Java操作Redis</h3><h4 id="导入jar包"><a href="#导入jar包" class="headerlink" title="导入jar包"></a>导入jar包</h4><pre><code>&lt;dependency&gt;
+&lt;groupId&gt;redis.clients&lt;/groupId&gt;
+&lt;artifactId&gt;jedis&lt;/artifactId&gt;
+&lt;version&gt;2.9.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><h4 id="连接操作"><a href="#连接操作" class="headerlink" title="连接操作"></a>连接操作</h4><pre><code>Jedis jd = new Jedis(&quot;39.106.131.203&quot;);
+</code></pre><h2 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h2><h3 id="MongoDB简介"><a href="#MongoDB简介" class="headerlink" title="MongoDB简介"></a>MongoDB简介</h3><p>MongoDB是一个跨平台，面向文档的数据库，提供高性能，高可用性和易于扩展。MongoDB是工作在集合和文档上一种概念<br>MongoDB 是一个基于分布式文件存储的数据库。由C++语言编写。旨在为WEB应用提供可扩展的高性能数据存储解决方案<br>MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。他支持的数据结构非常松散，是类似json的bson格式，因此可以存储比较复杂的数据类型。Mongo最大的特点是他支持的查询语言非常强大，其语法有点类似于面向对象的查询语言，几乎可以实现类似关系数据库单表查询的绝大部分功能，而且还支持对数据建立索引</p>
+<h3 id="MongoDB特点"><a href="#MongoDB特点" class="headerlink" title="MongoDB特点"></a>MongoDB特点</h3><ul>
+<li>面向集合存储，易于存储对象类型的数据</li>
+<li>模式自由</li>
+<li>支持动态查询</li>
+<li>支持完全索引，包含内部对象</li>
+<li>支持查询</li>
+<li>支持复制和故障恢复</li>
+<li>使用高效的二进制数据存储，包括大型对象（如视频等）</li>
+<li>自动处理碎片，以支持云计算层次的扩展性</li>
+<li>支持 Python，PHP，Ruby，Java，C，C#，Javascript，Perl 及 C++语言的驱动程序</li>
+<li>文件存储格式为 BSON（一种 JSON 的扩展）,文档型<br>可通过网络访问</li>
+</ul>
+<h4 id="面向集合（Collenction-Orented）"><a href="#面向集合（Collenction-Orented）" class="headerlink" title="面向集合（Collenction-Orented）"></a>面向集合（Collenction-Orented）</h4><p>意思是数据被分组存储在数据集中，被称为一个集合（Collenction)。每个集合在数据库中都有一个唯一的标识名，并且可以包含无限数目的文档。集合的概念类似关系型数据库（RDBMS）里的表（table），不同的是它不需要定义任何模式（schema)</p>
+<h4 id="模式自由（schema-free"><a href="#模式自由（schema-free" class="headerlink" title="模式自由（schema-free)"></a>模式自由（schema-free)</h4><p>意味着对于存储在 MongoDB 数据库中的文件，我们不需要知道它的任何结构定义。提了这么多次”无模式”或”模式自由”，它到是个什么概念呢？ 例如，下面两个记录可以存在于同一个集合里面：<br>{“welcome” : “Beijing”}<br>{“age” : 25} </p>
+<h4 id="文档型"><a href="#文档型" class="headerlink" title="文档型:"></a>文档型:</h4><p>意思是我们存储的数据是键-值对的集合,键是字符串,值可以是数据类型集合里的任意类型,包括数组和文档. 我们把这个数据格式称作 “BSON” 即 “Binary Serialized dOcument Notation.”</p>
+<h3 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h3><p>MongoDB 是一个<strong>可移植的数据库</strong>，它在流行的每一个平台上都可以使用，即所谓的跨平台特性。在不同的操作系统上虽然略有差别，但是从整体构架上来看，MongoDB 在不同的平 台上是一样的，如数据逻辑结构和数据的存储等等。<br>一个运行着的 MongoDB 数据库就可以看成是一个 MongoDB Server，该 Server 由实例和数据库组成，在一般的情况下一个 MongoDB Server 机器上包含一个实例和多个与之对应的数据库，但是在特殊情况下，如硬件投入成本有限或特殊的应用需求，也允许一个 Server 机器上可以有多个实例和多个数据库。<br>MongoDB 中一系列物理文件（数据文件，日志文件等）的集合或与之对应的逻辑结构（集 合，文档等）被称为数据库，简单的说，就是数据库是由一系列与磁盘有关系的物理文件的 组成。</p>
+<ul>
+<li><p>数据逻辑结构</p>
+<p>   MongoDB 的逻辑结构是一种层次结构。主要由：文档(document)、集合(collection)、数据库(database)这三部分组成的。逻辑结构是面向用户的，用户使用 MongoDB 开发应用程序使用的就是逻辑结构。</p>
+<pre><code>1： MongoDB 的文档（document），相当于关系数据库中的一行记录
+2：多个文档组成一个集合（collection），相当于关系数据库的表
+3：多个集合（collection），逻辑上组织在一起，就是数据库（database）
+4：一个 MongoDB 实例支持多个数据库（database）
+</code></pre></li>
+<li><p>数据存储结构</p>
+<p>  MongoDB 的默认数据目录是/data/db，它负责存储所有的 MongoDB 的数据文件。在 MongoDB内部，每个数据库都包含一个.ns 文件和一些数据文件，而且这些数据文件会随</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/d9guB4A.png" alt=""></p>
+<h3 id="mongod参数说明"><a href="#mongod参数说明" class="headerlink" title="mongod参数说明"></a>mongod参数说明</h3><p>mongod 的主要参数有：</p>
+<pre><code>dbpath:
+    数据文件存放路径，每个数据库会在其中创建一个子目录，用于防止同一个实例多次运行的 mongod.lock 也保存在此目录中。
+logpath
+    错误日志文件
+logappend
+    错误日志采用追加模式（默认是覆写模式）
+bind_ip
+    对外服务的绑定 ip，一般设置为空，及绑定在本机所有可用 ip 上，如有需要可以单独指定
+port
+    对外服务端口。Web 管理端口在这个 port 的基础上+1000 
+fork
+    以后台 Daemon 形式运行服务
+journal
+    开启日志功能，通过保存操作日志来降低单机故障的恢复时间，在 1.8 版本后正式加入，取代在 1.7.5 版本中的 dur 参数。
+syncdelay
+    系统同步刷新磁盘的时间，单位为秒，默认是 60 秒。
+directoryperdb
+    每个 db 存放在单独的目录中，建议设置该参数。与 MySQL 的独立表空间类似maxConns最大连接数
+repairpath
+执行 repair 时的临时目录。在如果没有开启 journal，异常 down 机后重启，必须执行 repair
+操作
+</code></pre><h3 id="常见命令-1"><a href="#常见命令-1" class="headerlink" title="常见命令"></a>常见命令</h3><pre><code>show dbs:显示数据库列表 
+show collections：显示当前数据库中的集合（类似关系数据库中的表） 
+show users：显示用户
+use &lt;db name&gt;：切换当前数据库，这和MS-SQL里面的意思一样 
+db.help()：显示数据库操作命令，里面有很多的命令 
+db.foo.help()：显示集合操作命令，同样有很多的命令，foo指的是当前数据库下，一个叫foo的集合，并非真正意义上的命令 
+db.foo.find()：对于当前数据库中的foo集合进行数据查找（由于没有条件，会列出所有数据） 
+db.foo.find( { a : 1 } )：对于当前数据库中的foo集合进行查找，条件是数据中有一个属性叫a，且a的值为1
+MongoDB没有创建数据库的命令，但有类似的命令。
+修复当前数据库   db.repairDatabase();
+查看当前使用的数据库  
+    db.getName();
+     db; db和getName方法是一样的效果，都可以查询当前使用的数据库
+显示当前db状态  db.stats();
+当前db版本  db.version();
+查看当前db的链接机器地址  db.getMongo();
+</code></pre><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h4><p><img src="https://i.imgur.com/DlgDx9u.png" alt=""></p>
+<h4 id="添加文档"><a href="#添加文档" class="headerlink" title="添加文档"></a>添加文档</h4><pre><code>db.users.insert({ 
+    “_id”:ObjectId(&quot;52c3c518498a9646a48133a2&quot;),
+    “name”:“likang”, 
+    “email”:“likang@qq.com”
+}); 
+db.users.save({ 
+    “_id”:ObjectId(&quot;52c3c518498a9646a48133a2&quot;),
+    “name”:“likang2”, 
+    “email”:“likang2@qq.com”
+}); 
+
+insert 当_id存在时报错
+save 当_id存在时覆盖更新
+</code></pre><h4 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h4><pre><code>//删除全部
+db.user.remove(); 
+//删除指定记录
+db.user.remove({“name”:“likang”}); 
+
+//删除user集合
+db.user.drop();
+</code></pre><h4 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h4><pre><code>原文档：
+{ 
+    “_id”:ObjectId(&quot;52c3c518498a9646a48133a2&quot;),
+    “name”:“likang”, 
+    “email”:“likang@qq.com”
+} 
+!
+修改后的⽂档：
+{ 
+    “_id”:ObjectId(&quot;52c3c518498a9646a48133a2&quot;),
+    “name”:“likang”, 
+    “email”:[
+        “likang@qq.com”, 
+        “likang2@qq.com” 
+    ] 
+}
+
+var doc = db.users.findOne({&quot;name&quot; : “likang”});
+doc.email =[ 
+    “likang@qq.com”, 
+    “likang2@qq.com” 
+]; 
+db.users.update({ &quot;name&quot; : &quot;likang&quot; }, doc);
+
+// 更新:指定第三个参数为true可以开启upsert模式
+//根据条件查找不到数据则创建⼀条新的
+db.users.update({ &quot;name&quot; : &quot;likang&quot; }, doc, true);
+</code></pre><h3 id="常用工具集"><a href="#常用工具集" class="headerlink" title="常用工具集"></a>常用工具集</h3><p>MongoDB 在 bin 目录下提供了一系列有用的工具，这些工具提供了 MongoDB 在运维管理上的方便。</p>
+<pre><code>bsondump: 将 bson 格式的文件转储为 json 格式的数据
+mongo: 客户端命令行工具，其实也是一个 js 解释器，支持 js 语法
+mongod: 数据库服务端，每个实例启动一个进程，可以 fork 为后台运行
+mongodump/ mongorestore: 数据库备份和恢复工具
+mongoexport/ mongoimport: 数据导出和导入工具
+mongofiles: GridFS 管理工具，可实现二制文件的存取 -mongos: 分片路由，如果使用了 sharding 功能，则应用程序连接的是 mongos 而不是 mongod 
+mongosniff: 这一工具的作用类似于 tcpdump，不同的是他只监控 MongoDB 相关的包请求，并且是以指定的可读性的形式输出
+mongostat: 实时性能监控工具
+</code></pre><h3 id="Java操作MongoDB"><a href="#Java操作MongoDB" class="headerlink" title="Java操作MongoDB"></a>Java操作MongoDB</h3><h4 id="配置所需jar包"><a href="#配置所需jar包" class="headerlink" title="配置所需jar包"></a>配置所需jar包</h4><pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.mongodb&lt;/groupId&gt;
+    &lt;artifactId&gt;mongo-java-driver&lt;/artifactId&gt;
+    &lt;version&gt;3.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><h4 id="连接Mongodb工具类"><a href="#连接Mongodb工具类" class="headerlink" title="连接Mongodb工具类"></a>连接Mongodb工具类</h4><pre><code>public class MongoDbUtil {
+
+    private static MongoCollection&lt;Document&gt; collection;
+
+    /**
+     * 链接数据库
+     * 
+     * @param databaseName 数据库名称
+     * @param collectionName 集合名称
+     * @param hostName 主机名
+     * @param port  端口号
+     */
+    public static void connect(String databaseName, String collectionName,String hostName, int port) {
+        @SuppressWarnings(&quot;resource&quot;)
+        MongoClient client = new MongoClient(hostName, port);
+        MongoDatabase db = client.getDatabase(databaseName);
+        collection = db.getCollection(collectionName);
+        System.out.println(collection);
+    }
+</code></pre><p>应用场景</p>
+<hr>
+<p>redis：数据量较小的更性能操作和运算上。</p>
+<p>memcache：用于在动态系统中减少数据库负载，提升性能;做缓存，提高性能(适合读多写少，对于数据量比较大，可以采用sharding)。<br>MongoDB:主要解决海量数据的访问效率问题。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>求打赏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="易慕晓生 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="易慕晓生 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/11/win10下mysql8.0/" rel="next" title="windows下数据库mysql8.0安装">
+                <i class="fa fa-chevron-left"></i> windows下数据库mysql8.0安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/11/那年我梳理的Java编程题/" rel="prev" title="那年我梳理的Java编程题">
+                那年我梳理的Java编程题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">易慕晓生</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心 方得始终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YDoctor" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:825742394@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nosql"><span class="nav-number">1.</span> <span class="nav-text">Nosql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NoSQL和关系型数据库"><span class="nav-number">1.3.</span> <span class="nav-text">NoSQL和关系型数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关系型数据库"><span class="nav-number">1.3.1.</span> <span class="nav-text">关系型数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NoSQL数据库"><span class="nav-number">1.3.2.</span> <span class="nav-text">NoSQL数据库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NoSQL-数据库分类"><span class="nav-number">1.4.</span> <span class="nav-text">NoSQL 数据库分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis"><span class="nav-number">2.</span> <span class="nav-text">Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis优点"><span class="nav-number">2.2.</span> <span class="nav-text">Redis优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis数据类型"><span class="nav-number">2.3.</span> <span class="nav-text">Redis数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#string-字符串"><span class="nav-number">2.3.1.</span> <span class="nav-text">string(字符串)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#list-双向链表"><span class="nav-number">2.3.2.</span> <span class="nav-text">list(双向链表)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-无序集合"><span class="nav-number">2.3.3.</span> <span class="nav-text">set(无序集合)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sorted-set-有序集合-–-zset"><span class="nav-number">2.3.4.</span> <span class="nav-text">Sorted set(有序集合)– zset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hash-hash表"><span class="nav-number">2.3.5.</span> <span class="nav-text">hash(hash表)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见命令"><span class="nav-number">2.4.</span> <span class="nav-text">常见命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Value操作命令"><span class="nav-number">2.4.1.</span> <span class="nav-text">Value操作命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#string操作的命令"><span class="nav-number">2.4.2.</span> <span class="nav-text">string操作的命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对List操作的命令"><span class="nav-number">2.4.3.</span> <span class="nav-text">对List操作的命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对Set操作的命令"><span class="nav-number">2.4.4.</span> <span class="nav-text">对Set操作的命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对Hash操作的命令"><span class="nav-number">2.4.5.</span> <span class="nav-text">对Hash操作的命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis功能"><span class="nav-number">2.5.</span> <span class="nav-text">Redis功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis发布-订阅"><span class="nav-number">2.5.1.</span> <span class="nav-text">Redis发布/订阅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis事务支持"><span class="nav-number">2.5.2.</span> <span class="nav-text">Redis事务支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis主从复制-集群"><span class="nav-number">2.5.3.</span> <span class="nav-text">Redis主从复制(集群)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis主从复制过程"><span class="nav-number">2.5.4.</span> <span class="nav-text">Redis主从复制过程:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis持久化"><span class="nav-number">2.5.5.</span> <span class="nav-text">Redis持久化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB与AOF比较"><span class="nav-number">2.5.6.</span> <span class="nav-text">RDB与AOF比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java操作Redis"><span class="nav-number">2.6.</span> <span class="nav-text">Java操作Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导入jar包"><span class="nav-number">2.6.1.</span> <span class="nav-text">导入jar包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接操作"><span class="nav-number">2.6.2.</span> <span class="nav-text">连接操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB"><span class="nav-number">3.</span> <span class="nav-text">MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB简介"><span class="nav-number">3.1.</span> <span class="nav-text">MongoDB简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB特点"><span class="nav-number">3.2.</span> <span class="nav-text">MongoDB特点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#面向集合（Collenction-Orented）"><span class="nav-number">3.2.1.</span> <span class="nav-text">面向集合（Collenction-Orented）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式自由（schema-free"><span class="nav-number">3.2.2.</span> <span class="nav-text">模式自由（schema-free)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文档型"><span class="nav-number">3.2.3.</span> <span class="nav-text">文档型:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#体系结构"><span class="nav-number">3.3.</span> <span class="nav-text">体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mongod参数说明"><span class="nav-number">3.4.</span> <span class="nav-text">mongod参数说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见命令-1"><span class="nav-number">3.5.</span> <span class="nav-text">常见命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">3.6.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询文档"><span class="nav-number">3.6.1.</span> <span class="nav-text">查询文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加文档"><span class="nav-number">3.6.2.</span> <span class="nav-text">添加文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除文档"><span class="nav-number">3.6.3.</span> <span class="nav-text">删除文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新文档"><span class="nav-number">3.6.4.</span> <span class="nav-text">更新文档</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用工具集"><span class="nav-number">3.7.</span> <span class="nav-text">常用工具集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java操作MongoDB"><span class="nav-number">3.8.</span> <span class="nav-text">Java操作MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置所需jar包"><span class="nav-number">3.8.1.</span> <span class="nav-text">配置所需jar包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接Mongodb工具类"><span class="nav-number">3.8.2.</span> <span class="nav-text">连接Mongodb工具类</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">易慕晓生</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=create by yimu"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=create by yimu"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=create by yimu"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=create by yimu"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=create by yimu"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

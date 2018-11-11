@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=create by yimu" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=create by yimu">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=create by yimu">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=create by yimu">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=create by yimu" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, yimu">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaSE知识点梳理 JavaSE基础 计算机的体系结构基本概念 计算机俗称&amp;quot;电脑&amp;quot;，是一种被广泛使用在各个领域的设备。 计算机主要由：硬件 和 软件 两部分组成。 计算机中常见的硬件有：CPU、内存、硬盘、输入输出设备、... CPU---中央处理器，是计算机最核心的部件，相当于人的大脑 所有的运算都在CPU中进行">
+<meta name="keywords" content="专注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="那年学过的Java笔记一SE基础">
+<meta property="og:url" content="http://yoursite.com/2018/11/11/那年学过的Java笔记一SE基础/index.html">
+<meta property="og:site_name" content="易慕晓生">
+<meta property="og:description" content="JavaSE知识点梳理 JavaSE基础 计算机的体系结构基本概念 计算机俗称&amp;quot;电脑&amp;quot;，是一种被广泛使用在各个领域的设备。 计算机主要由：硬件 和 软件 两部分组成。 计算机中常见的硬件有：CPU、内存、硬盘、输入输出设备、... CPU---中央处理器，是计算机最核心的部件，相当于人的大脑 所有的运算都在CPU中进行">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/eZoqsaL.jpg">
+<meta property="og:image" content="https://i.imgur.com/KQf6701.png">
+<meta property="og:image" content="https://i.imgur.com/lHeR0FS.png">
+<meta property="og:image" content="https://i.imgur.com/xdZuN21.jpg">
+<meta property="og:image" content="https://i.imgur.com/BCVAsq7.png">
+<meta property="og:updated_time" content="2018-11-11T04:47:40.390Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="那年学过的Java笔记一SE基础">
+<meta name="twitter:description" content="JavaSE知识点梳理 JavaSE基础 计算机的体系结构基本概念 计算机俗称&amp;quot;电脑&amp;quot;，是一种被广泛使用在各个领域的设备。 计算机主要由：硬件 和 软件 两部分组成。 计算机中常见的硬件有：CPU、内存、硬盘、输入输出设备、... CPU---中央处理器，是计算机最核心的部件，相当于人的大脑 所有的运算都在CPU中进行">
+<meta name="twitter:image" content="https://i.imgur.com/eZoqsaL.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: 'create by yimu',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/11/那年学过的Java笔记一SE基础/">
+
+
+
+
+
+  <title>那年学过的Java笔记一SE基础 | 易慕晓生</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">易慕晓生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/那年学过的Java笔记一SE基础/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="易慕晓生">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="易慕晓生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">那年学过的Java笔记一SE基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T12:49:11+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/你那么努力总得给自己留点记忆/" itemprop="url" rel="index">
+                    <span itemprop="name">你那么努力总得给自己留点记忆</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JavaSE知识点梳理"><a href="#JavaSE知识点梳理" class="headerlink" title="JavaSE知识点梳理"></a>JavaSE知识点梳理</h2><p><img src="https://i.imgur.com/eZoqsaL.jpg" alt=""></p>
+<h2 id="JavaSE基础"><a href="#JavaSE基础" class="headerlink" title="JavaSE基础"></a>JavaSE基础</h2><p><img src="https://i.imgur.com/KQf6701.png" alt=""></p>
+<h2 id="计算机的体系结构"><a href="#计算机的体系结构" class="headerlink" title="计算机的体系结构"></a>计算机的体系结构</h2><p><strong>基本概念</strong></p>
+<pre><code>计算机俗称&quot;电脑&quot;，是一种被广泛使用在各个领域的设备。
+计算机主要由：硬件 和 软件 两部分组成。
+计算机中常见的硬件有：CPU、内存、硬盘、输入输出设备、...
+CPU---中央处理器，是计算机最核心的部件，相当于人的大脑
+所有的运算都在CPU中进行
+</code></pre><a id="more"></a>
+<p><strong>内存</strong> —是计算机中的存储部件，用于存储CPU需要使用的相关数据。</p>
+<ul>
+<li>该部件中存储的内容可以被CPU直接访问，并且效率比较高。</li>
+<li>该部件中的数据不能永久存储，一旦关机都会造成数据的丢失。</li>
+<li>使用ctrl+s快捷键可以进行数据的保存<br> 硬盘 - 是计算机中的存储部件，该部件可以实现永久存储，通常不会造成数据的丢失</li>
+<li>该部件中存储的内容不能被CPU直接访问，若希望访问则需要将数据加载到内存</li>
+</ul>
+<p><strong>科普</strong>：<br>1Tb = 1024Gb<br>1Gb = 1024Mb<br>1Mb = 1024Kb<br>1Kb = 1024byte(字节)  通常情况下单个英文字母占1个字节，单个汉字占2个字节<br>1byte = 8bit(二进制位) 在计算机的底层只识别0和1组成的二进制序列</p>
+<p><strong>思考</strong>：<br>目前主流的硬盘配置：250G  320G  500G  1Tb等，为啥我的硬盘只有298G呢？<br>解析：<br>硬件厂商在生产硬件时按照1000作为进率，操作系统是按照1024作为进率。</p>
+<p><strong>常见的软件</strong></p>
+<pre><code>计算机的常见软件分为：系统软件 和 应用软件。
+其中系统软件主要指操作系统，目前主流的主机操作系统：Windows/Linux/Unix系列
+    Windows系统：WinXp、Vista、Win7、Win8、Win8.1、Win10   
+    目前移动终端的操作系统：Android、ios、windowsPhone
+其中应用软件主要指安装在操作系统上的软件，如：火狐、记事本、计算器、QQ等
+</code></pre><p><strong>计算机的体系架构</strong><br>    使用者 =&gt; 应用软件 =&gt; 操作系统 =&gt; 硬件<br>           =&gt; 操作系统分为：外壳(Shell) 和 内核(Kernel)</p>
+<h2 id="Java语言的基本概述"><a href="#Java语言的基本概述" class="headerlink" title="Java语言的基本概述"></a>Java语言的基本概述</h2><p>1 Java语言的产生背景<br>    Java语言诞生于1995年，高斯林是公认的Java语言之父，隶属于sun公司，现在<br>    隶属于oracle(甲骨文)公司。</p>
+<p>2 Java语言的版本</p>
+<ul>
+<li>Java SE（Java Platform, Standard Edition）<br>称之为“Java平台标准版”，可以编写像office之类的桌面软件。</li>
+<li>Java EE（Java Platform，Enterprise Edition）<br>称之为“Java平台企业版”，可以编写具有B/S架构的项目和解决方案。</li>
+<li>Java ME （Java Platform，Micro Edition）<br>称之为Java 平台微型版，随着Android系统的普及走向淘汰。</li>
+</ul>
+<p>3.开发环境的搭建和使用<br>1 jdk的下载和安装<br>(1)下载方式<br>   a.从官网直接下载：<a href="http://www.sun.com/www.oracle.com" target="_blank" rel="noopener">www.sun.com/www.oracle.com</a><br>   b.从百度/谷歌/搜狗进行搜索下载<br>(2)安装方式<br>   a.若下载的安装版，则一路点击下一步即可。<br>   b.若下载的绿色版，则直接解压即可。<br>   切记不要有中文路径。</p>
+<p>2 相关的概念<br><img src="https://i.imgur.com/lHeR0FS.png" alt=""><br>   jdk - Java开发工具包，只要做Java语言的开发就必须安装该软件。<br>   jre - Java运行时环境，只要运行Java程序就必须安装该软件。<br>   javac.exe - Java语言编译器，用于将高级源代码文件编译为字节码文件。<br>   java.exe - Java语言解释器，用于启动Java虚拟机对字节码文件进行边解释边执行。<br>   JVM - Java虚拟机，用于作为Java语言和操作系统之间的桥梁。</p>
+<p>3 编写Java程序的流程<br>   (1) 新建文本文档，将文件的名称由xxx.txt修改为xxx.java。<br>   (2) 使用记事本的方式打开文件，编辑Java代码后保存。<br>   (3) 启动dos窗口，将路径切换到xxx.java所在的目录。<br>   (4) 使用javac xxx.java进行编译，生成xxx.class的字节码文件。<br>   (5) 使用java xxx进行解释执行，打印最终的结果。</p>
+<p><strong>注意</strong>：<br>   若文本文档没有显示.txt后缀时，则具体处理如下：<br>      组织 =&gt; 文件夹和搜索选项 =&gt; 查看 =&gt; 隐藏已知文件名的扩展名 =&gt; 去掉勾选 =&gt;确定</p>
+<p><strong>4 常用的快捷键</strong></p>
+<pre><code>ctrl+s 保存
+ctrl+a 全选
+ctrl+c 复制
+ctrl+v 粘贴
+ctrl+x 剪切
+ctrl+f 查找
+ctrl+z 撤销
+windows+d 打开桌面
+windows+e 打开计算机
+windows+l 锁屏
+windows+r 打开运行，输入cmd后回车，就可以启动dos窗口
+windows+tab 切换任务
+alt+tab  切换任务
+ctrl+alt+delete 打开任务管理器
+ctrl+shift 切换输入法，若切换到中文输入法后就可以使用shift进行中英文切换
+</code></pre><p><strong>5 常用的dos命令</strong></p>
+<pre><code>d: 表示切换到d盘
+cd 目录名/路径 表示切换到指定的目录中
+dir 表示查看当前目录的内容
+cls 表示清屏 
+cd .. 表示切换到上一级目录     
+</code></pre><p><strong>6 环境变量的配置</strong><br>基本概念<br>通常情况下的可执行文件需要在该文件所在的目录中才能使用，为了使得该可执行文件可以在任意的位置直接使用，此时就需要配置环境变量Path。</p>
+<p>配置方式<br>计算机 =&gt; 鼠标右击 =&gt; 属性 =&gt; 高级系统设置 =&gt; 高级 =&gt; 环境变量 =&gt; 系统变量<br>=&gt; 找到Path，点击编辑 =&gt; 将javac.exe所在的路径拷贝到Path变量值的最前面，添加分号<br>=&gt; 一路点击确定即可<br>切记Path变量值原来的内容不要改！<br>配置环境变量后记得重启dos窗口！</p>
+<p><strong>7 Java语言的跨平台特性</strong><br>由于不同的操作系统中都提供了Java虚拟机进行解释执行，因此对于同一份字节码文件来说，可以实现一次编译，到处运行的美名。</p>
+<p><strong>编码:编写第一个java程序Hello world</strong></p>
+<pre><code>public class helloWorld(){
+    public static void main(String args){
+        system.out.println(&quot;Hello world&quot;);
+    }
+}
+</code></pre><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p><strong>1 变量的基本概念</strong><br>当需要在程序中记录单个数据内容时，则声明一个变量来记录即可，而变量的本质就是在内存中申请一块存储单元，并且该区域中的数据内容可以发生改变，因此得名为 变量。<br>由于存储的数据内容不同导致所需的内存空间大小不同，在Java语言中使用数据类型的概念加以描述，并指定该区域一个变量名的概念来记录地址信息。<br><strong>2 变量的声明方式</strong></p>
+<pre><code>数据类型 变量名 = 初始值;     - 其中=初始值可以省略，但;不可以省略。
+如：
+String name = &quot;xiaomage&quot;; - 推荐该方式
+int age = 18;
+int age;   
+</code></pre><p>注意：<br>在main()方法体中直接声明的变量叫做 局部变量，局部变量的作用域为：从声明开始一直到该方法体结束。</p>
+<p><strong>3 标识符(变量名)的命名规则</strong></p>
+<ul>
+<li>由字母、数字、下划线以及美元$组成，其中数字不能开头。<br>如：name age id country name2 name3 等</li>
+<li>不能与Java语言中的关键字同名，关键字就是Java语言中用于代表特殊含义的单词。<br>如：class int void static 等</li>
+<li>区分大小写，长度没有限制但不宜过长。<br>如：Day 和 day代表两个不同的变量名，不推荐使用 </li>
+<li>尽量做到见名知意，支持中文但不推荐使用。<br>如：sendMsgToAll </li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><strong>基本分类</strong></p>
+<p>在Java语言中将数据类型分为两大类：<br>基本数据类型：byte、short、int、long、float、double、char、boolean。<br>引用数据类型：数组、类、接口、枚举以及标注。</p>
+<h3 id="常见的进制"><a href="#常见的进制" class="headerlink" title="常见的进制"></a>常见的进制</h3><p>在日常生活中采用十进制，逢十进一，每个十进制数字的权重：10^0、10^1、10^2、…<br>在计算机的底层采用二进制，逢二进一，每个二进制数字的权重：2^0、2^1、2^2、…<br>为了简化二进制的表示形式，通常会采用八进制和十六进制来描述。   </p>
+<p>在二进制中操作最高位(最左边)代表符号位，使用0代表非负数，使用1代表负数。</p>
+<h3 id="进制之间的转换-尽量掌握、原理"><a href="#进制之间的转换-尽量掌握、原理" class="headerlink" title="进制之间的转换(尽量掌握、原理)"></a>进制之间的转换(尽量掌握、原理)</h3><p><strong>1 正十进制转换为正二进制的方式</strong><br>a.除2取余法，让十进制整数不断地除以2记录余数，直到商为0将所有余数逆序排列。<br>b.拆分法，将十进制整数拆分为若干个二进制权重的和，若有该权重则下面写1，否则写0。</p>
+<pre><code>如： 
+34 = 32 + 2
+
+128  64  32  16      8  4  2  1
+0   0   1   0       0  0  1  0   =&gt; 0010 0010
+</code></pre><p><strong>2 正二进制转换为正十进制的方式</strong><br>a.加权法，让二进制的每个数字乘以当前位的权重，再将所有乘积累加起来即可。</p>
+<pre><code>如：
+0010 0010 =&gt; 0*2^7 + 0*2^6 + 1*2^5 + 0*2^4 + 0*2^3 + 0*2^2 + 1*2^1 + 0*2^0
+=&gt; 0 + 0 + 32 + 0 + 0 + 0 + 2 + 0
+=&gt; 34
+</code></pre><p><strong>3 负十进制转换为负二进制的方式</strong><br>a.将十进制整数的绝对值转换为二进制，然后进行按位取反再加1。</p>
+<pre><code>如：
+-34 转换为二进制的结果：
+34转换为二进制： 0010 0010
+按位取反：       1101 1101
+再加1：          1101 1110    
+
+34: 0010 0010 
+-34: 1101 1110 +
+1  0000 0000  (若只保留低8位二进制，则最高位的1溢出/丢弃， 结果是：0 )
+</code></pre><p><strong>4 负二进制转换为负十进制的方式</strong><br>a.先减1再按位取反，然后采用加权法合并为十进制整数，最后添加负号。</p>
+<pre><code>如：
+1101 1110转换为十进制：
+先减1：   1101 1101 
+按位取反：0010 0010
+合并十进制整数：34
+最后添加负号： -34
+
+解析：
+1个二进制位：  0  1
+2个二进制位：  00 01 10 11
+3个二进制位：  000 001 010 011 100 101 110 111 
+</code></pre><p>5 二进制转换为八进制的方式(了解)</p>
+<pre><code>a.将每三位二进制合并为一位八进制，并使用0作为八进制的前缀。
+如：
+010 001(二进制) =&gt; 021(八进制)
+</code></pre><p>6 八进制转换为二进制的方式(了解)</p>
+<pre><code>a.将每一位八进制拆分为三位二进制，并使用0b作为二进制的前缀(jdk1.7的新特性)。  
+如：
+063(八进制) =&gt; 0b110 011(二进制)
+</code></pre><p>7 二进制转换为十六进制的方式(了解)</p>
+<pre><code>a.将每四位二进制合并为一位十六进制，并使用0x作为十六进制的前缀。
+如：
+1010 0111(二进制) =&gt; 0xa7(十六进制，使用a~f来代表10~15之间的整数)
+</code></pre><p>8 十六进制转换为二进制的方式(了解)</p>
+<pre><code>a.将每一位十六进制拆分为四位二进制，并使用0b作为二进制的前缀。
+如：
+0xc9(十六进制) =&gt; 0b1100 1001
+</code></pre><h3 id="单个字节表示的整数范围-重中之重"><a href="#单个字节表示的整数范围-重中之重" class="headerlink" title="单个字节表示的整数范围(重中之重)"></a>单个字节表示的整数范围(重中之重)</h3><pre><code>在计算机中单个字节占8位二进制位，最高位表符号位，0表非负数，1表负数，具体如下:
+非负数的表示范围是：0000 0000 ~ 0111 1111 =&gt; 0 ~ 127 =&gt; 0 ~ 2^7-1
+0000 0000 =&gt; 0
+0111 1111 =&gt; 0*2^7 + 1*2^6 + 1*2^5 + 1*2^4 + 1*2^3 + 1*2^2 + 1*2^1 + 1*2^0
+=&gt; 64 + 32 + 16 + 8 + 4 + 2 + 1
+=&gt; 127
+负数的表示范围是：1000 0000 ~ 1111 1111 =&gt; -128 ~ -1 =&gt; -2^7 ~ -2^0
+1000 0000 =&gt; 减1：0111 1111
+=&gt; 按位取反：1000 0000
+=&gt; 转换十进制：128
+=&gt; 添加负号： -128
+1111 1111 =&gt; 减1：1111 1110
+=&gt; 按位取反：0000 0001
+=&gt; 转换十进制：1
+=&gt; 添加负号： -1
+综上所述：
+对于单个字节来说，所能表示的十进制整数范围是：-128 ~ 127 =&gt; -2^7 ~ 2^7-1.
+</code></pre><h3 id="整数类型-重点"><a href="#整数类型-重点" class="headerlink" title="整数类型(重点)"></a>整数类型(重点)</h3><pre><code>在Java语言中用于描述整数数据的类型有：byte、short、int、long，推荐使用int类型。     其中byte类型在内存空间中占1个字节的大小，因此表示范围是：-2^7 ~ 2^7-1.
+                                -128 ~ 127.
+其中short类型在内存空间占2个字节的大小，因此表示范围是： -2^15 ~ 2^15-1.
+                                -32768 ~ 32767.
+其中int类型在内存空间占4个字节的大小，因此表示范围是：-2^31 ~ 2^31-1.
+                             正负二十一亿之间.
+其中long类型在内存空间占8个字节的大小，因此表示范围是：-2^63 ~ 2^63-1.
+                              比int类型还大的数.
+在Java程序中直接写出的整数数据叫做 直接量/字面值/常量，如：66，默认为int类型，若希望表达更大的直接量，则需要在直接量的后面加上l或者L，推荐使用L。
+</code></pre><h3 id="浮点类型-重点"><a href="#浮点类型-重点" class="headerlink" title="浮点类型(重点)"></a>浮点类型(重点)</h3><pre><code>在Java语言中用于描述小数数据的类型有：float、double，推荐使用double类型。
+其中float类型在内存空间中占4个字节，叫做单精度浮点数，通常小数点后可以取到7位。
+其中double类型在内存空间中占8个字节，叫做双精度浮点数，通常小数点后可以取到14位
+在Java程序中直接写出的小数数据叫做直接量，默认为double类型，如：3.14，若希望表达float类型的直接量，则需要在直接量后面加上f或者F.
+
+扩展：
+由于float类型和double类型无法实现精确计算，因此商业开发中需要借助java.math.BigDecimal类型加以描述。
+查询float和double类型的底层结构。
+</code></pre><h3 id="布尔类型-重点"><a href="#布尔类型-重点" class="headerlink" title="布尔类型(重点)"></a>布尔类型(重点)</h3><p>在Java语言中用于描述真假信息的类型有：boolean，数值只有：true(真) 和 false(假)<br>其中boolean类型占用内存空间的大小没有明确的规定，通常认为是1个字节。</p>
+<h3 id="字符类型-重点"><a href="#字符类型-重点" class="headerlink" title="字符类型(重点)"></a>字符类型(重点)</h3><p>在Java语言中用于描述字符信息的类型有：char，如：’1’，’a’，’中’等。<br>其中char类型占用内存空间的大小为2个字节，在以后的开发中char类型很少使用，使用更多的是多个字符组成的字符串，使用””括起来，并且用String类型加以描述。</p>
+<p><strong>为了使得字符能够有效地记录到计算机中，给每个字符指定了一个编号，叫做 ASCII值.</strong><br><img src="https://i.imgur.com/xdZuN21.jpg" alt=""></p>
+<p>要求记住的ASCII值有：</p>
+<pre><code>&apos;0&apos; - 48   &apos;A&apos; - 65   &apos;a&apos; - 97  空格 - 32  换行符 - 10
+</code></pre><p>要求大家记住的转义字符有：</p>
+<pre><code>\&quot; - &quot;   \&apos; - &apos;  \\ - \   \t - 制表符(tab键)  \n - 换行符
+</code></pre><h3 id="基本数据类型之间的转换-尽量理解"><a href="#基本数据类型之间的转换-尽量理解" class="headerlink" title="基本数据类型之间的转换(尽量理解)"></a>基本数据类型之间的转换(尽量理解)</h3><pre><code>在Java语言中数据类型之间的转换分为两大类：
+自动类型转换 - 主要指从小范围到大范围之间的转换。
+强制类型转换 - 主要指从大范围到小范围之间的转换。
+- 目标类型  变量名 = (目标类型)源类型的变量名。
+- byte b1 = (byte)s1;
+- 尽量少使用强制类型转换，因为可能会造成数据的丢失。
+</code></pre><h2 id="运算符"><a href="#运算符" class="headerlink" title=" 运算符"></a> 运算符</h2><h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><p>—  + - *  /  %表示取模/取余运算符</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li><p>当两个整数进行除法运算时，结果只取整数部分，丢弃小数部分；</p>
+</li>
+<li><p>若希望保留小数部分则处理方式如下：</p>
+<p>  将其中一个操作数强转为double类型后再进行除法运算。<br>  将其中一个操作数乘以1.0后再进行除法运算(推荐)。</p>
+</li>
+<li><p>0不能做除数，0.0可以做除数但结果是无穷大，因此通常不建议使用</p>
+</li>
+<li><p>+运算符既可以表示加法运算符也可以表示字符串连接符，具体区别如下：</p>
+</li>
+</ul>
+<pre><code>1 若+运算符两边的操作数没有任何一个是字符串类型时，则按照加法运算符来处理；
+2 若+运算符两边的操作数只有有一个是字符串类型，则按照字符串连接符来处理；
+</code></pre><h3 id="关系-比较运算符"><a href="#关系-比较运算符" class="headerlink" title="关系/比较运算符"></a>关系/比较运算符</h3><pre><code>&gt;  表示是否大于运算符       &gt;=  表示是否大于等于运算符
+&lt;  表示是否小于运算符       &lt;=  表示是否小于等于运算符
+== 表示是否等于运算符       !=  表示是否不等于运算符
+
+所有以关系运算符为最终运算的表达式结果一定是boolean类型，只有：true 和 false。
+
+3 自增减运算符
++  表示加法运算符      ++ 表示自增运算符，让变量自身的数值加1
+-  表示减法运算符      -- 表示自减运算符，让变量自身的数值减1
+</code></pre><h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><pre><code>&amp;&amp; 表示逻辑与运算符，相当于&quot;并且&quot;，只有运算符两边的结果都为真，最终的结果才为真
+- 同真为真，一假为假
+|| 表示逻辑或运算符，相当于&quot;或者&quot;，只要运算符两边的结果有一个为真，最终结果为真
+- 一真为真，同假为假
+!  表示逻辑非运算符，相当于&quot;取反&quot;，真为假，假为真。
+</code></pre><p><strong>短路特性：</strong></p>
+<p>对于逻辑与运算符来说，若第一个条件为假则整个表达式一定为假，第二个条件跳过不执行<br>对于逻辑或运算符来说，若第一个条件为真则整个表达式一定为真，第二个条件跳过不执行</p>
+<h3 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h3><pre><code>?: - 表示条件运算符，又叫做三目运算符。
+条件表达式 ? 表达式1: 表达式2
+=&gt; 判断条件表达式是否成立，若成立则执行表达式1，否则执行表达式2
+</code></pre><h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3><p>1 简单赋值</p>
+<pre><code>= 表示赋值运算符，用于将=右边的数值赋值给=左边的变量，切记不要与==混淆。
+笔试题：
+ia == 2;  - 表示判断ia是否等于2
+2 == ia;  - 表示判断2是否等于ia
+ia = 2;   - 表示将数值2赋值给变量ia，覆盖ia原来的数值
+2 = ia;   - 编译报错     
+</code></pre><p>2 复合赋值</p>
+<pre><code>+=  -=  *=  /=  ...
+如：
+ia = ia + 2;   =&gt;  ia += 2; 从结果上来说等价.
+笔试题：
+byte b1 = 2;
+b1 += 2 真正等价的是： b1 = (byte)(b1 + 2);
+</code></pre><h3 id="移位运算符-了解"><a href="#移位运算符-了解" class="headerlink" title="移位运算符(了解)"></a>移位运算符(了解)</h3><pre><code>&lt;&lt;  表示按照二进制位向左移动右边填0，叫做左移运算符
+&gt;&gt;  表示按照二进制位向右移动左边填符号位，叫做右移运算符
+&gt;&gt;&gt; 表示按照二进制位向右移动左边填0，叫做无符号右移运算符
+</code></pre><h3 id="位运算符-了解"><a href="#位运算符-了解" class="headerlink" title="位运算符(了解)"></a>位运算符(了解)</h3><p>&amp; 表示按位与运算符，同1为1，一0为0(1看做真，0看做假).<br>| 表示按位或运算符，一1为1，同0为0.<br>~ 表示按位取反运算符，1为0，0为1.<br>^ 表示按位异或运算符，相同为0，不同为1.</p>
+<h3 id="运算符的优先级"><a href="#运算符的优先级" class="headerlink" title="运算符的优先级"></a>运算符的优先级</h3><p>(1) ()的优先级极高;<br>(2) =的优先级极低;<br>(3) * / %的优先级高于+ -，同级的哪个在前先算哪个;</p>
+<h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><p><strong>基本概念</strong></p>
+<p>在某些特殊场合中根据判断的条件是否成立来决定是否执行某段代码的结构，叫做分支结构</p>
+<h3 id="if分支结构"><a href="#if分支结构" class="headerlink" title="if分支结构"></a>if分支结构</h3><pre><code>(1)语法格式
+if(条件表达式){
+语句块;
+}    
+(2)执行流程
+判断条件表达式是否成立
+=&gt; 若成立，则执行语句块；
+=&gt; 若不成立，则分支结构结束；
+</code></pre><h3 id="if-else分支结构"><a href="#if-else分支结构" class="headerlink" title="if-else分支结构"></a>if-else分支结构</h3><pre><code>(1)语法格式
+if(条件表达式){
+语句块1;
+}
+else{
+语句块2;
+}
+(2)执行流程
+判断条件表达式是否成立
+=&gt; 若成立，则执行语句块1；
+=&gt; 若不成立，则执行语句块2；
+</code></pre><h3 id="if-else-if-else分支结构"><a href="#if-else-if-else分支结构" class="headerlink" title="if-else if-else分支结构"></a>if-else if-else分支结构</h3><pre><code>(1)语法格式
+if(条件表达式1){
+语句块1;
+}
+else if(条件表达式2){
+语句块2;
+}
+... ...
+else{
+语句块n;
+}    
+(2)执行流程
+判断条件表达式1是否成立
+=&gt; 若成立，则执行语句块1；
+=&gt; 若不成立，则判断条件表达式2是否成立
+=&gt; 若成立，则执行语句块2；
+=&gt; 若不成立，则执行语句块n；
+</code></pre><h3 id="switch-case分支结构"><a href="#switch-case分支结构" class="headerlink" title="switch-case分支结构"></a>switch-case分支结构</h3><pre><code>(1)语法格式
+   switch(变量/表达式){
+       case 直接量1: 语句块1; break;
+       case 直接量2: 语句块2; break;
+       ... ...
+       default: 语句块n;
+   }
+(2)执行流程
+   计算变量/表达式的数值 =&gt; 判断是否与直接量1匹配
+      =&gt; 若匹配，则执行语句块1 =&gt; 执行break跳出该结构；
+      =&gt; 若不匹配，则判断是否与直接量2匹配
+               =&gt; 若匹配，则执行语句块2 =&gt; 执行break跳出该结构；
+               =&gt; 若不匹配，则执行语句块n;
+</code></pre><p><strong>注意事项</strong><br>switch()中支持的类型有：byte、short、char以及int类型，从jdk1.5开始支持枚举类型，从jdk1.7开始支持String类型。</p>
+<h2 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h2><p><strong>基本概念</strong></p>
+<p>   当需要在程序中重复执行一段代码时，则使用循环结构。</p>
+<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><pre><code>(1)语法格式
+   for(初始化表达式; 条件表达式; 修改初始值表达式){
+       循环体;
+   }
+(2)执行流程
+   执行初始化表达式 =&gt; 判断条件表达式是否成立
+       =&gt; 若成立，则执行循环体 =&gt; 执行修改初始值表达式 =&gt; 判断条件表达式是否成立
+       =&gt; 若不成立，则循环结束
+</code></pre><h3 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h3><p>   break关键字可以用在switch-case分支结构和循环结构中，用于跳出当前循环。<br>   continue关键字可以用在循环结构中表示结束本次循环继续下一次循环(熟悉)。</p>
+<h3 id="特殊的循环"><a href="#特殊的循环" class="headerlink" title="特殊的循环"></a>特殊的循环</h3><pre><code>for(;;) - 这种没有明确循环条件的循环叫做无限循环，俗称&quot;死循环&quot;。
+该循环通常与break关键字搭配使用
+</code></pre><h3 id="双重for循环"><a href="#双重for循环" class="headerlink" title="双重for循环"></a>双重for循环</h3><pre><code>(1)语法格式
+for(初始化表达式1; 条件表达式2; 修改初始值表达式3){
+    for(初始化表达式4; 条件表达式5; 修改初始值表达式6){
+        内层循环的循环体;
+    }
+}
+(2)执行流程
+执行表达式1 =&gt; 判断表达式2是否成立
+=&gt; 若成立，则执行表达式4 =&gt; 判断条件表达式5是否成立
+=&gt; 若成立，则执行循环体 =&gt; 执行表达式6 =&gt; 判断条件表达式5是否成立
+=&gt; 若不成立，则内层循环结束 =&gt; 执行表达式3 =&gt; 判断表达式2是否成立
+=&gt; 若不成立，则外层循环结束
+</code></pre><h3 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h3><pre><code>(1)语法格式
+   while(条件表达式){
+      循环体;
+   }
+
+(2)执行流程
+   判断条件表达式是否成立
+       =&gt; 若成立，则执行循环体 =&gt; 判断条件表达式是否成立
+       =&gt; 若不成立，则循环结束
+
+(3)注意事项
+   a.while循环和for循环可以完全互换；
+   b.while循环通常使用在明确循环条件不明确循环次数的场合中；
+     for循环通常使用在明确循环次数但不明确循环条件的场合中；
+   c.while(true)等价于for(;;)都表示无限循环；
+</code></pre><p><strong>do-while循环</strong></p>
+<pre><code>(1)语法格式
+   do{
+     循环体;
+   }while(条件表达式);
+
+(2)执行流程
+   执行循环体 =&gt; 判断条件表达式是否成立
+        =&gt; 若成立，则执行循环体 =&gt; 判断条件表达式是否成立
+        =&gt; 如不成立，则循环结束
+
+(3)注意事项
+   do-while循环主要用于至少执行一次循环体的场合中;
+</code></pre><h2 id="一维数组-重点"><a href="#一维数组-重点" class="headerlink" title="一维数组(重点)"></a>一维数组(重点)</h2><p><strong>基本概念</strong></p>
+<p>   当需要在程序中记录单个数据时，则声明一个变量来记录即可；<br>   当需要在程序中记录多个类型相同的数据时，则声明一个一维数组来记录，而一维数组的本质就是在内存中申请一段连续的存储空间，每个存储单元负责记录一个数据。</p>
+<pre><code>数组名称 - 主要用于记录该连续内存空间的首地址，代表该数组。
+数组元素 - 主要指存放在数组中的数据内容。
+数组长度 - 主要指该数组可以存放的元素个数，通常使用 数组名.length 的方式获取。
+数组下标 - 主要指数组元素在数组中的编号，从0开始 一直到 数组名.length-1。
+</code></pre><p><strong>数组的声明</strong></p>
+<pre><code>(1)语法格式
+   数据类型[] 数组名称 = new 数据类型[数组的长度];  - 动态方式
+如：
+   int[] arr = new int[5]; - 声明一个长度为5元素类型为int类型的一维数组
+   int num = 5;            - 声明一个int类型的变量num，初始值为5
+   int arr[] = new int[5]; - 不推荐使用
+   double[] arr = new double[3]; - 声明一个长度为3元素类型为double类型的一维数组
+
+注意：
+   只有在声明数组时[]中的数字才代表数组的长度，否则一律代表数组的下标；
+
+(2)数组元素的初始化
+   数据类型[] 数组名称 = {初始值1, 初始值2, ...};  - 静态方式
+如：
+   int[] arr = {10, 20, 30}; - 声明一个长度为3元素类型为int类型的一维数组
+ 该数组元素的初始值为：10 20 30
+</code></pre><h2 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h2><p><img src="https://i.imgur.com/BCVAsq7.png" alt=""><br><strong>基本概念</strong></p>
+<p>一维数组本质上就是一段连续内存空间，用于存放多个类型相同的数据内容。<br>二维数组本质上就是由一维数组组成的数组，换句话说，二维数组中的每个元素都是一个一维数组，而一维数组的每个元素才是具体的数据内容。</p>
+<p><strong>声明方式</strong></p>
+<pre><code>(1)语法格式
+   数据类型[][] 数组名称 = new 数据类型[行数][列数];
+如：
+   int[][] arr = new int[2][3];  - 声明一个具有2行3列元素类型为int类型的二维数组
+   其中行下标范围是：0 ~ 1;
+   其中列下标范围是：0 ~ 2;
+
+思考：
+   arr代表什么？  arr[0]代表什么？  arr[0][0]代表什么？
+解析：
+   arr表示二维数组的名称，代表连续内存空间的首地址
+   arr[0]表示二维数组的第一行，也就是一个一维数组
+   arr[0][0]表示二维数组的第一行第一列，也就是第一个数据内容
+
+   arr.length代表二维数组的大小，也就是元素/一维数组的个数，换句话说，二维数组行数
+   arr[0].length代表二维数组第一行的大小，也就是一维数组的大小，换句话说，就是列数
+
+(2)初始化
+   数据类型[][] 数组名称 = {{初始值1,初始值2, ...}, ...};
+	如：
+	   int[][] arr = {{1, 2, 3}, {4, 5, 6}};
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>求打赏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="易慕晓生 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="易慕晓生 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/11/那年学过的Java笔记三核心类库一/" rel="next" title="那年学过的Java笔记三核心类库一">
+                <i class="fa fa-chevron-left"></i> 那年学过的Java笔记三核心类库一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/11/那年学过的Oracle笔记/" rel="prev" title="那年学过的Oracle笔记">
+                那年学过的Oracle笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">易慕晓生</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心 方得始终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YDoctor" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:825742394@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaSE知识点梳理"><span class="nav-number">1.</span> <span class="nav-text">JavaSE知识点梳理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaSE基础"><span class="nav-number">2.</span> <span class="nav-text">JavaSE基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机的体系结构"><span class="nav-number">3.</span> <span class="nav-text">计算机的体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java语言的基本概述"><span class="nav-number">4.</span> <span class="nav-text">Java语言的基本概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">5.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">6.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的进制"><span class="nav-number">6.1.</span> <span class="nav-text">常见的进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进制之间的转换-尽量掌握、原理"><span class="nav-number">6.2.</span> <span class="nav-text">进制之间的转换(尽量掌握、原理)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单个字节表示的整数范围-重中之重"><span class="nav-number">6.3.</span> <span class="nav-text">单个字节表示的整数范围(重中之重)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数类型-重点"><span class="nav-number">6.4.</span> <span class="nav-text">整数类型(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点类型-重点"><span class="nav-number">6.5.</span> <span class="nav-text">浮点类型(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔类型-重点"><span class="nav-number">6.6.</span> <span class="nav-text">布尔类型(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符类型-重点"><span class="nav-number">6.7.</span> <span class="nav-text">字符类型(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本数据类型之间的转换-尽量理解"><span class="nav-number">6.8.</span> <span class="nav-text">基本数据类型之间的转换(尽量理解)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">7.</span> <span class="nav-text"> 运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算术运算符"><span class="nav-number">7.1.</span> <span class="nav-text">算术运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系-比较运算符"><span class="nav-number">7.2.</span> <span class="nav-text">关系/比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">7.3.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件运算符"><span class="nav-number">7.4.</span> <span class="nav-text">条件运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值运算符"><span class="nav-number">7.5.</span> <span class="nav-text">赋值运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移位运算符-了解"><span class="nav-number">7.6.</span> <span class="nav-text">移位运算符(了解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位运算符-了解"><span class="nav-number">7.7.</span> <span class="nav-text">位运算符(了解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符的优先级"><span class="nav-number">7.8.</span> <span class="nav-text">运算符的优先级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支结构"><span class="nav-number">8.</span> <span class="nav-text">分支结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if分支结构"><span class="nav-number">8.1.</span> <span class="nav-text">if分支结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if-else分支结构"><span class="nav-number">8.2.</span> <span class="nav-text">if-else分支结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if-else-if-else分支结构"><span class="nav-number">8.3.</span> <span class="nav-text">if-else if-else分支结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switch-case分支结构"><span class="nav-number">8.4.</span> <span class="nav-text">switch-case分支结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环结构"><span class="nav-number">9.</span> <span class="nav-text">循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环"><span class="nav-number">9.1.</span> <span class="nav-text">for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#break和continue"><span class="nav-number">9.2.</span> <span class="nav-text">break和continue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊的循环"><span class="nav-number">9.3.</span> <span class="nav-text">特殊的循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双重for循环"><span class="nav-number">9.4.</span> <span class="nav-text">双重for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while循环"><span class="nav-number">9.5.</span> <span class="nav-text">while循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一维数组-重点"><span class="nav-number">10.</span> <span class="nav-text">一维数组(重点)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二维数组"><span class="nav-number">11.</span> <span class="nav-text">二维数组</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">易慕晓生</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=create by yimu"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=create by yimu"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=create by yimu"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=create by yimu"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=create by yimu"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

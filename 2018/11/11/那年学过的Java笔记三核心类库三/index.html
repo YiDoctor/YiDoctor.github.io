@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=create by yimu" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=create by yimu">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=create by yimu">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=create by yimu">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=create by yimu" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, yimu">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="线程 基本概念 程序 - 数据结构 + 算法，主要指存放在硬盘上的可执行文件。进程 - 主要指运行在内存中的程序。目前主流的操作系统都支持多进程，是为了让操作系统同时执行多个任务，但进程是重量级的，新建进程对CPU和内存等系统资源的消耗比较大，因此进程的数量是有限的。线程就是进程内部的程序流，也就是说操作系统中支持多进程，而每个进程中又可以支持多线程，并且线程是轻量级的，新建线程会共享所在进程的资">
+<meta name="keywords" content="专注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="那年学过的Java笔记三核心类库三">
+<meta property="og:url" content="http://yoursite.com/2018/11/11/那年学过的Java笔记三核心类库三/index.html">
+<meta property="og:site_name" content="易慕晓生">
+<meta property="og:description" content="线程 基本概念 程序 - 数据结构 + 算法，主要指存放在硬盘上的可执行文件。进程 - 主要指运行在内存中的程序。目前主流的操作系统都支持多进程，是为了让操作系统同时执行多个任务，但进程是重量级的，新建进程对CPU和内存等系统资源的消耗比较大，因此进程的数量是有限的。线程就是进程内部的程序流，也就是说操作系统中支持多进程，而每个进程中又可以支持多线程，并且线程是轻量级的，新建线程会共享所在进程的资">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/UA4yeWZ.png">
+<meta property="og:image" content="https://i.imgur.com/cYgndUR.png">
+<meta property="og:image" content="https://i.imgur.com/DnsgYKj.png">
+<meta property="og:image" content="https://i.imgur.com/4ANJ6gF.png">
+<meta property="og:image" content="https://i.imgur.com/Q3FAnHI.png">
+<meta property="og:image" content="https://i.imgur.com/FD5ILMp.png">
+<meta property="og:image" content="https://i.imgur.com/nkDJB1T.png">
+<meta property="og:image" content="https://i.imgur.com/p2Lr4hb.png">
+<meta property="og:updated_time" content="2018-11-11T04:40:40.359Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="那年学过的Java笔记三核心类库三">
+<meta name="twitter:description" content="线程 基本概念 程序 - 数据结构 + 算法，主要指存放在硬盘上的可执行文件。进程 - 主要指运行在内存中的程序。目前主流的操作系统都支持多进程，是为了让操作系统同时执行多个任务，但进程是重量级的，新建进程对CPU和内存等系统资源的消耗比较大，因此进程的数量是有限的。线程就是进程内部的程序流，也就是说操作系统中支持多进程，而每个进程中又可以支持多线程，并且线程是轻量级的，新建线程会共享所在进程的资">
+<meta name="twitter:image" content="https://i.imgur.com/UA4yeWZ.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: 'create by yimu',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/11/那年学过的Java笔记三核心类库三/">
+
+
+
+
+
+  <title>那年学过的Java笔记三核心类库三 | 易慕晓生</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">易慕晓生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/那年学过的Java笔记三核心类库三/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="易慕晓生">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="易慕晓生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">那年学过的Java笔记三核心类库三</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T12:49:11+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/你那么努力总得给自己留点记忆/" itemprop="url" rel="index">
+                    <span itemprop="name">你那么努力总得给自己留点记忆</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p><img src="https://i.imgur.com/UA4yeWZ.png" alt=""></p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="https://i.imgur.com/cYgndUR.png" alt=""></p>
+<p>程序 - 数据结构 + 算法，主要指存放在硬盘上的可执行文件。<br>进程 - 主要指运行在内存中的程序。<br>目前主流的操作系统都支持多进程，是为了让操作系统同时执行多个任务，但进程是重量级的，新建进程对CPU和内存等系统资源的消耗比较大，因此进程的数量是有限的。<br>线程就是进程内部的程序流，也就是说操作系统中支持多进程，而每个进程中又可以支持多线程，并且线程是轻量级的，新建线程会共享所在进程的资源，因此对资源的消耗比较小，以后的开发中基本都采用多线程的技术。<br>目前主流的操作系统都采用时间片轮转法来保证多个任务的同时执行，叫做并发执行，也就是宏观并行，微观串行的技术。</p>
+<h3 id="线程的创建-重中之重"><a href="#线程的创建-重中之重" class="headerlink" title="线程的创建(重中之重)"></a>线程的创建(重中之重)</h3><a id="more"></a>
+<p><strong>1 Thread类</strong><br>java.lang.Thread类用于描述线程，Java虚拟机中允许运行多个线程。</p>
+<p><strong>创建线程并启动的方式有两种：</strong></p>
+<ul>
+<li>自定义类继承Thread类并重写run()方法，创建该类的对象调用start()方法。</li>
+<li>自定义类实现Runnable接口并重写run()方法，创建该类的对象作为创建Thread类对象的实参，然后使用Thread类的对象去调用start()方法。</li>
+</ul>
+<p><strong>2 相关的方法</strong></p>
+<pre><code>Thread() - 使用无参的方式创建对象。
+Thread(String name) - 使用参数指定的名称来创建对象。
+Thread(Runnable target) - 根据参数指定的接口来构造对象。
+- 接口作为方法的形参时，实参传递的方式有两种：
+a.创建实现类的对象作为实参传递；
+b.使用匿名内部类来得到接口的引用作为实参传递。
+Thread(Runnable target, String name) - 根据接口引用和名称共同创建对象。
+void run() - 若使用Runnable对象构造的线程对象，则调用该方法最终为调用                            Runnable对象中的run()方法，否则该方法不执行任何操作。
+void start() - 用于启动线程，并自动调用该线程对象的run()方法。
+</code></pre><h3 id="实现原理-尽量理解"><a href="#实现原理-尽量理解" class="headerlink" title="实现原理(尽量理解)"></a>实现原理(尽量理解)</h3><p>main()方法是程序的入口，执行main()方法的线程叫做主线程；<br>由start()方法启动的线程叫做新/子线程。<br>对于start()方法之前的代码来说，由主线程执行一次，当start()方法调用成功后，线程的个数瞬间由1个变成了2个，其中新创建的线程去执行run()方法的代码，主线程继续向下执行，两个线程各自独立运行。<br>当run()方法结束后子线程结束，当main()方法结束后主线程结束，两个线程的执行先后次序没有明确的规定，由系统的调度算法来决定。</p>
+<p><strong>注意：</strong><br>继承的方式创建和启动线程的代码简单，但Java支持单继承，不利于项目的维护和扩展，因此在以后的开发中推荐使用实现接口的方式创建和启动线程。</p>
+<p><strong>思考：</strong><br>采用匿名内部类的方式来创建和启动一个线程呢？？<br>解析：<br>父类/接口类型 引用变量名 = new 父类/接口类型(){  方法的重写; };</p>
+<h3 id="线程的编号和名称-熟悉"><a href="#线程的编号和名称-熟悉" class="headerlink" title="线程的编号和名称(熟悉)"></a>线程的编号和名称(熟悉)</h3><pre><code>long getId() - 用于获取线程的标识符/编号并返回。
+String getName() - 用于获取线程的名称并返回。
+void setName(String name) - 用于将线程名称修改为参数指定的数值。
+static Thread currentThread() - 用于返回当前正在执行线程对象的引用。
+</code></pre><h3 id="线程的主要状态-了解"><a href="#线程的主要状态-了解" class="headerlink" title="线程的主要状态(了解)"></a>线程的主要状态(了解)</h3><p><img src="https://i.imgur.com/DnsgYKj.png" alt=""></p>
+<ul>
+<li>使用new关键字创建线程对象后进入的状态。</li>
+<li>此时该线程并没有开始执行。<br>就绪状态 - 调用start()方法后进入的状态。   </li>
+<li>此时该线程仍然没有开始执行。<br>运行状态 - 使用线程调度器调用就绪状态的线程后进入的状态。</li>
+<li>此时该线程开始执行。</li>
+<li>当时间片结束后线程的任务没有完成则回到就绪状态。<br>消亡状态 - 当时间片结束后线程的任务已经完成后进入的状态。<br>阻塞状态 - 当线程执行的过程中发生阻塞事件时进入的状态，如：sleep()方法。</li>
+<li>当阻塞状态解除后进入就绪状态。</li>
+</ul>
+<p><img src="https://i.imgur.com/4ANJ6gF.png" alt=""></p>
+<h3 id="线程的常用方法-重点"><a href="#线程的常用方法-重点" class="headerlink" title="线程的常用方法(重点)"></a>线程的常用方法(重点)</h3><pre><code>static void sleep(long millis) - 用于让当前线程睡眠参数指定的毫秒数。
+- 1秒 = 1000毫秒
+static void sleep(long millis, int nanos) - 用于睡眠参数指定的毫秒数和纳秒数。
+- 1秒 = 1000毫秒  1毫秒 = 1000微秒   1微秒 = 1000纳秒 
+int getPriority() - 用于获取当前线程的优先级并返回。 
+void setPriority(int newPriority) - 用于设置线程的优先级。
+- 优先级越高表示获取到时间片的机会越多，但不一定先执行。
+void join() - 用于让当前正在执行的线程等待调用join()方法的线程终止。
+void join(long millis) - 用于等待参数指定的毫秒数。
+void join(long millis, int nanos) - 用于等待参数指定的毫秒数+纳秒数。
+boolean isDaemon() - 用于测试该线程是否为守护线程。
+- 守护线程通常指后台运行为其它线程提供服务的线程，如：垃圾回收线程。
+void setDaemon(boolean on) - 用于标记该线程为守护线程，必须在启动之前调用。
+- 当所有非守护线程结束时，守护线程也会随之结束。
+- 
+</code></pre><h3 id="线程的同步机制-重点"><a href="#线程的同步机制-重点" class="headerlink" title="线程的同步机制(重点)"></a>线程的同步机制(重点)</h3><p><strong>1 基本概念</strong><br>当多个线程同时访问同一种共享资源时，可能会造成数据的不一致或覆盖等问题，此时就需要对多个线程进行协调，而线程之间的协调和通信就叫做线程的同步机制。</p>
+<p><strong>2 解决方案</strong><br>由程序可知，当两个线程同时进行取款操作后，最终的账户余额与实际生活不符。<br>解决方案：将线程的并发操作修改为线程的串行操作。<br>引发问题：串行操作的效率比较低，因此以后的开发中尽量不要使用。</p>
+<p><strong>3 实现方式</strong><br>在Java语言使用synchronized关键字来实现对象锁机制，从而保证线程操作的原子性，具体实现方式有两种：</p>
+<pre><code>a.使用同步语句块的方式实现，具体语法格式如下：
+synchronized(对象的引用){
+    编写所有需要锁定的代码块;
+}
+b.使用同步方法的方式实现，也就是使用synchronized关键字修饰整个方法即可。
+该方式等价于：
+synchronized(this){ 所有的方法体; } 
+</code></pre><p><strong>4 实现原理(尽量理解)</strong><br>当多个线程同时启动后各自独立运行去抢占共享资源，若其中一个线程抢到了共享资源，则其他线程进入阻塞状态，直到该线程执行完毕所有锁定代码后自动释放对象锁，此时阻塞的线程又可以抢占共享资源，抢到资源的线程继续加锁去执行，抢不到资源的线程继续阻塞。<br>以后的开发中应当尽量减少同步的范围，从而提高多个线程并发执行的效率。</p>
+<h3 id="死锁-尽量理解"><a href="#死锁-尽量理解" class="headerlink" title="死锁(尽量理解)"></a>死锁(尽量理解)</h3><pre><code>线程一执行的代码：
+public void run(){
+    synchronized(a){   //持有对象锁a，等待对象锁b
+        synchronized(b){
+        }
+    }
+}   
+线程二执行的代码：
+public void run(){
+    synchronized(b){   //持有对象锁b，等待对象锁a
+        synchronized(a){
+        }
+    }
+}   
+</code></pre><p><strong>注意：</strong><br>在以后的开发中尽量不要使用同步语句块的嵌套结构！</p>
+<h3 id="Object类中的常用方法-尽量理解"><a href="#Object类中的常用方法-尽量理解" class="headerlink" title="Object类中的常用方法(尽量理解)"></a>Object类中的常用方法(尽量理解)</h3><pre><code>void wait() - 用于使得当前线程进入等待状态，直到其它线程调用notify()
+或notifyAll()方法为止。
+void wait(long timeout) - 使得当前线程进入等待状态，直到其它线程调用上述方法，
+或者参数指定的毫秒数已经过去为止。
+void notify() - 用于唤醒单个等待的线程。
+void notifyAll() - 用于唤醒所有等待的线程。
+</code></pre><h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p><img src="https://i.imgur.com/Q3FAnHI.png" alt=""></p>
+<h2 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h2><p><img src="https://i.imgur.com/FD5ILMp.png" alt=""></p>
+<h3 id="七层协议模型-了解"><a href="#七层协议模型-了解" class="headerlink" title="七层协议模型(了解)"></a>七层协议模型(了解)</h3><p>ISO将数据的传递从逻辑上划分为七层来保证数据传递的可靠性和安全性等，具体如下：<br>应用层、表示层、会话层、传输层、网络层、数据链路层、物理层。<br>当发送数据时，需要按照上述七层模型从左向右依次进行加包处理，然后再发送出去。<br>当接收数据时，需要按照上述七层模型从右向左依次进行拆包处理，然后再解析数据。</p>
+<h3 id="常见的网络协议-了解"><a href="#常见的网络协议-了解" class="headerlink" title="常见的网络协议(了解)"></a>常见的网络协议(了解)</h3><p>http - 超文本传输协议，主要用于浏览网页时使用。<br>ftp  - 文件传输协议，主要用于上传和下载文件时使用。<br>tcp  - 传输控制协议，主要用于网络通信时使用。<br>udp  - 用户数据报协议，主要用于网络通信时使用。<br>ip   - 互联网协议，是互联网中的底层协议。<br>… …</p>
+<p><strong>协议 - 本质上就是一种规则/约定，约束了双方进行通信的方式。</strong></p>
+<h3 id="IP地址-重点"><a href="#IP地址-重点" class="headerlink" title="IP地址(重点)"></a>IP地址(重点)</h3><pre><code>如：
+192.168.1.1 - 是绝大多数路由器的登录地址，进行Mac地址的绑定。
+</code></pre><p>IP地址 - 是设备在互联网中的唯一地址标识。<br>IP地址本质上是由32位二进制组成的整数，叫做IPV4，当然也有128位二进制组成的整数，叫做IPV6，目前主流的还是IPV4。<br>为了便于现实生活中的使用，采用点分十进制表示法来进行IP地址的描述，也就是将每个字节的二进制转换为一个十进制整数，不同的整数之间采用小数点分隔。</p>
+<pre><code>如：
+0x01020304(十六进制) =&gt; 1.2.3.4 
+</code></pre><p>查看IP地址的方式：</p>
+<pre><code>Windows系统：在dos窗口中使用命令ipconfig或ipconfig/all查看
+Linux系统：  在终端窗口中使用命令ifconfig或/sbin/ifconfig查看
+</code></pre><h3 id="端口号-重点"><a href="#端口号-重点" class="headerlink" title="端口号(重点)"></a>端口号(重点)</h3><p>IP地址 - 可以定位到具体某一台设备。<br>端口号 - 可以定位到该设备中的具体某个进程。<br>网络编程需要提供：IP地址 + 端口号。</p>
+<p>端口号本质上是由<strong>16位二进制组成的整数</strong>，范围是：0 ~ 65535，其中0 ~ 1024之间的端口号通常被系统占用，以后的编程从1025开始使用。</p>
+<h3 id="基于tcp协议的编程模型-重点"><a href="#基于tcp协议的编程模型-重点" class="headerlink" title="基于tcp协议的编程模型(重点)"></a>基于tcp协议的编程模型(重点)</h3><h4 id="编程模型"><a href="#编程模型" class="headerlink" title="编程模型"></a>编程模型</h4><pre><code>服务器：
+(1)创建ServerSocket类型的对象，并提供端口号;
+(2)等待客户端的连接请求，调用accept()方法;
+(3)使用输入输出流进行通信;
+(4)关闭Socket并释放有关的资源;
+客户端：  
+(1)创建Socket类型的对象，并提供服务器的IP地址和端口号;
+(2)使用输入输出流进行通信;
+(3)关闭Socket并释放有关的资源;
+</code></pre><h4 id="相关类和方法"><a href="#相关类和方法" class="headerlink" title="相关类和方法"></a>相关类和方法</h4><p><strong>ServerSocket类</strong></p>
+<pre><code>java.net.ServerSocket类用于描述服务器的套接字(大插排)。
+ServerSocket(int port) - 根据参数指定的端口号来创建对象。
+Socket accept() - 用于监听并接受客户端的连接请求。
+void close() 
+</code></pre><p><strong>socket类</strong></p>
+<pre><code>java.net.Socket类用于描述客户端套接字(小插排)，该套接字是两台设备间通信的端点。
+Socket(String host, int port) - 根据参数指定的IP地址和端口号来创建对象并建立连接
+InputStream getInputStream() - 用于获取当前套接字的输入流并返回。
+OutputStream getOutputStream() - 用于获取当前套接字的输出流并返回。
+void close()
+</code></pre><h4 id="tcp协议和udp协议的比较-笔试题"><a href="#tcp协议和udp协议的比较-笔试题" class="headerlink" title="tcp协议和udp协议的比较(笔试题)"></a>tcp协议和udp协议的比较(笔试题)</h4><p><strong>tcp协议</strong> </p>
+<ul>
+<li>传输控制协议，是一种面向连接的协议，类似于打电话。</li>
+<li>建立连接 =&gt; 进行通信 =&gt; 断开连接</li>
+<li>在整个通信的过程中全程保持连接</li>
+<li>保证了数据传输的可靠性和有序性</li>
+<li>是一种全双工的字节流通信方式</li>
+<li>服务器压力比较大，资源消耗比较多，并且发送数据的效率相对比较低</li>
+</ul>
+<p><strong>udp协议</strong></p>
+<ul>
+<li>用户数据报协议，是一种非面向连接的协议，类似于写信。</li>
+<li>在通信的整个过程中不需要保持连接</li>
+<li>不保证数据传输的可靠性和有序性</li>
+<li>是一种全双工的数据报通信方式</li>
+<li>服务器压力比较小，资源消耗比较少，并且发送数据的效率相对比较高。<br>基于udp协议的编程模型</li>
+</ul>
+<hr>
+<h3 id="基于UDP协议的编程模型"><a href="#基于UDP协议的编程模型" class="headerlink" title="基于UDP协议的编程模型"></a>基于UDP协议的编程模型</h3><pre><code>主机A(接收方):
+(1)创建DatagramSocket类型的对象，并提供端口号；
+(2)创建DatagramPacket类型的对象，并指定缓冲区和缓冲区的大小；
+(3)从Socket中接收数据放入Packet中，调用receive()方法；
+(4)关闭Socket并释放有关的资源；
+主机B(发送方):
+(1)创建DatagramSocket类型的对象；
+(2)创建DatagramPacket类型的对象，并提供接收方的IP地址和端口号；
+(3)将Packet发送到Socket中，调用send()方法；
+(4)关闭Socket并释放有关的资源；
+</code></pre><h4 id="DatagramSocket类"><a href="#DatagramSocket类" class="headerlink" title="DatagramSocket类"></a>DatagramSocket类</h4><pre><code>java.net.DatagramSocket类用于描述发送或接受数据报的套接字；
+DatagramSocket() - 使用无参方式构造对象；
+DatagramSocket(int port) - 根据参数指定的端口号来构造对象；
+void receive(DatagramPacket p) - 用于接收数据并存放到参数指定的对象中；
+void send(DatagramPacket p) - 用于将参数指定对象的内容发送出去；
+void close()
+</code></pre><h4 id="DatagramPacket类"><a href="#DatagramPacket类" class="headerlink" title="DatagramPacket类"></a>DatagramPacket类</h4><pre><code>java.net.DatagramPacket类用于描述数据报信息；
+DatagramPacket(byte[] buf, int length) - 构造对象用于接收数据；
+DatagramPacket(byte[] buf, int length, InetAddress address, int port) 
+- 构造对象用于发送数据，并指定接收方信息；
+InetAddress getAddress() - 用于获取接收方或发送方的通信地址；
+int getPort() - 用于获取接收方或发送方的端口信息；
+int getLength() - 用于获取数据的长度；
+</code></pre><h4 id="InetAddress类"><a href="#InetAddress类" class="headerlink" title="InetAddress类"></a>InetAddress类</h4><pre><code>java.net.InetAddress类用于描述通信地址；
+static InetAddress getLocalHost() - 用于获取当前主机的通信地址；
+static InetAddress getByName(String host) - 用于获取参数指定主机名的通信地址； 
+String getHostName() - 用于获取通信地址中的主机名信息；
+String getHostAddress() - 用于获取通信地址中的IP地址信息；
+</code></pre><h2 id="反射机制"><a href="#反射机制" class="headerlink" title="反射机制"></a>反射机制</h2><p><img src="https://i.imgur.com/nkDJB1T.png" alt=""></p>
+<pre><code>如：
+Person p = new Person(); - 表示声明Person类型的引用指向Person类型的对象
+p.show();                - 表示使用引用p调用show()方法
+</code></pre><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>通常情况下，编写的代码都是固定的，此时在运行阶段只能创建指定的对象和调用指定的方法，若希望在编译阶段不确定创建什么类型的对象以及调用什么样的方法，通过运行阶段传入的参数来确定，这种机制叫做动态编程/反射机制。<br>反射机制就是用于实现动态创建对象和动态调用方法的技术，目前主流的框架技术底层原理都是使用反射机制。</p>
+<h3 id="Class类"><a href="#Class类" class="headerlink" title="Class类"></a>Class类</h3><p><strong>基本概念</strong><br>java.lang.Class类的实例主要用于描述Java应用程序中的类和接口，也就是说该类的实例不再是表示堆区的一块空间，而是表示一种数据类型。<br>该类没有公共构造方法，该类的所有对象由Java虚拟机和类加载器自动构造。</p>
+<h4 id="获取Class对象的主要方式"><a href="#获取Class对象的主要方式" class="headerlink" title="获取Class对象的主要方式"></a>获取Class对象的主要方式</h4><pre><code>a.使用数据类型.class的方式可以获取该类型的Class对象；
+b.使用对象.getClass()的方式可以获取该类型的Class对象；
+c.使用包装类.TYPE的方式可以获取对应基本数据类型的Class对象；
+d.使用Class.forName()的方式可以获取指定类型的Class对象；
+</code></pre><p>####常用的方法 ####</p>
+<pre><code>static Class&lt;?&gt; forName(String className) 
+- 用于获取参数指定类型的Class对象并返回；
+T newInstance() - 用于创建此Class对象所表示的类对应的新实例；
+如：
+Class c1 = Class.forName(&quot;xdl.day21.Person&quot;);   
+c1.newInstance();     
+=&gt; new Person();
+
+Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes) 
+- 用于获取当前Class对象所表示类中参数指定的单个公共构造方法并返回。
+Constructor&lt;?&gt;[] getConstructors() 
+- 用于获取当前Class对象所表示类中所有公共构造方法并返回。
+如：
+Constructor ct1 = c1.getConstructor(String.class, int.class);
+=&gt; 相当于获取Person类中参数为String类型和int类型的构造方法
+=&gt; 也就是获取Person类中的有参构造并返回
+
+Field getDeclaredField(String name) 
+- 用于获取当前Class对象所表示类中参数指定的单个成员变量并返回。
+Field[] getDeclaredFields() 
+- 用于获取当前Class对象所表示类中所有的成员变量并返回。
+如：
+Field f1 = c1.getDeclaredField(&quot;name&quot;);
+=&gt; 相当于获取Person类中名字为name的成员变量并返回。   
+
+Method getMethod(String name, Class&lt;?&gt;... parameterTypes) 
+- 用于获取当前Class对象所表示类中参数指定的单个公共成员方法并返回。
+Method[] getMethods() 
+- 用于获取当前Class对象所表示类中所有的公共成员方法并返回。
+如：
+Method m1 = c1.getMethod(&quot;getName&quot;);
+=&gt; 相当于获取Person类中名字为getName的成员方法并返回。
+</code></pre><h4 id="Constructor类"><a href="#Constructor类" class="headerlink" title="Constructor类"></a>Constructor类</h4><p>基本概念<br>java.lang.reflect.Constructor<t>类主要用于描述获取到的构造方法信息。</t></p>
+<p>常用的方法</p>
+<pre><code>T newInstance(Object... initargs) 
+- 使用调用对象所表示的构造方法来创建新实例，并使用参数来初始化该实例。
+如：
+Object obj = ct1.newInstance(&quot;zhangfei&quot;, 30);
+=&gt; new Person(&quot;zhangfei&quot;, 30);
+</code></pre><h4 id="Field类"><a href="#Field类" class="headerlink" title="Field类"></a>Field类</h4><p>基本概念<br>java.lang.reflect.Field类用于描述获取到的单个成员变量信息。</p>
+<p>常用的方法</p>
+<pre><code>Object get(Object obj) 
+- 用于返回指定对象obj中当前调用对象所表示成员变量的数值
+如：
+f1.get(obj);
+=&gt; 相当于获取对象obj中名字为name成员变量的数值并返回。   
+=&gt; 返回obj.name的效果，也就是返回zhangfei。
+
+void set(Object obj, Object value) 
+- 用于将对象obj中当前调用对象所表示成员变量的数值修改为value。
+如：
+f1.set(obj, &quot;guanyu&quot;);
+=&gt; 相当于将对象obj中名字为name成员变量的数值修改为guanyu。
+=&gt; 将zhangfei改为guanyu。
+
+void setAccessible(boolean flag)
+- 当实参为true时表示取消Java语言的访问检查。
+</code></pre><h4 id="Method类"><a href="#Method类" class="headerlink" title="Method类"></a>Method类</h4><p>基本概念<br>java.lang.reflect.Method类用于描述获取到的单个成员方法。</p>
+<p>常用的方法</p>
+<pre><code>Object invoke(Object obj, Object... args) 
+- 使用对象obj来调用当前调用对象所表示的成员方法，其中args为该方法的实参。
+如：
+m1.invoke(obj);
+=&gt; 相当于使用对象obj来调用getName()成员方法。
+=&gt; 相当于obj.getName()
+</code></pre><h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p><img src="https://i.imgur.com/p2Lr4hb.png" alt=""></p>
+<h3 id="项目开发的流程"><a href="#项目开发的流程" class="headerlink" title="项目开发的流程"></a>项目开发的流程</h3><pre><code>需求分析文档 =&gt; 概要设计文档 =&gt; 详细设计文档 =&gt; 编码和测试 =&gt; 安装和调试
+=&gt; 维护和升级
+</code></pre><h3 id="常用的设计原则"><a href="#常用的设计原则" class="headerlink" title="常用的设计原则"></a>常用的设计原则</h3><h4 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h4><ul>
+<li>对扩展开放，对修改关闭</li>
+<li>任何软件都是有bug的，bug就是臭虫、漏洞的意思 </li>
+<li>提高了项目的可维护性和可扩展性。</li>
+</ul>
+<pre><code>如：
+public class Person{
+    private String name;
+        private int age;
+            ... ...
+}
+public class Student extends Person{
+    private int id;
+    ... ...
+}
+</code></pre><h4 id="里氏代换原则"><a href="#里氏代换原则" class="headerlink" title="里氏代换原则"></a>里氏代换原则</h4><ul>
+<li>任何父类可以出现的地方子类一定可以出现</li>
+<li>子类 is a 父类。</li>
+<li>建议多使用继承和多态的方式编码。</li>
+</ul>
+<pre><code>如：
+public static void draw(Shape s){
+    s.show();
+}
+
+draw(new Rect(1, 2, 3, 4));
+draw(new Circle(5, 6, 7));
+</code></pre><h4 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h4><ul>
+<li>尽量多依赖抽象类和接口，而不是具体实现类</li>
+<li>抽象类和接口对子类具有强制性和规范性。</li>
+</ul>
+<pre><code>如：
+public abstract class A{
+    public abstract void show();
+}
+public class B extends A{
+    public void show(){}
+}
+</code></pre><h4 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h4><ul>
+<li>尽量多依赖于小接口而不是大接口，避免接口的污染</li>
+</ul>
+<pre><code>如：
+public interface FlyAnimal{
+    public abstract void fly();
+}
+public interface RunAnimal{
+    public abstract void run();
+}
+class Dog implements RunAnimal{
+    ... ...
+}
+</code></pre><h4 id="迪米特法则（最少知道原则）"><a href="#迪米特法则（最少知道原则）" class="headerlink" title="迪米特法则（最少知道原则）"></a>迪米特法则（最少知道原则）</h4><ul>
+<li>一个实体应当尽量少与其它实体之间发生关联</li>
+<li>高内聚低耦合</li>
+<li>内聚就是指一个实体应当将该有的所有功能聚集于该实体的内部。</li>
+<li>耦合就是指一个实体与其它实体之间的关联度。</li>
+<li><h4 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h4></li>
+<li><p>尽量多使用合成的方式而不是继承</p>
+</li>
+</ul>
+<pre><code>如：
+class A{
+    void show(){}
+}
+class B extends A{
+    void test(){
+        show();
+    }
+}
+class A{
+    void show(){}
+}
+class B{
+    private A a;
+    void test(){
+        a.show();
+        }
+}
+</code></pre><h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><h3 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h3><p>设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。<br>设计模式本质上就是一种固定的套路，使用在固定的场合中。</p>
+<p>###基本分类 ###</p>
+<pre><code>创建型模式 - 工厂方法模式、抽象工厂模式、单例设计模式。(要求会写)
+结构型模式 - 装饰器模式、代理模式。(要求看懂)
+行为型模式 - 模板设计模式、观察者模式。(以后讲到)
+</code></pre><h2 id="常用的算法"><a href="#常用的算法" class="headerlink" title="常用的算法"></a>常用的算法</h2><h3 id="常用的查找算法-重点"><a href="#常用的查找算法-重点" class="headerlink" title="常用的查找算法(重点)"></a>常用的查找算法(重点)</h3><h4 id="线性查找算法-顺序查找算法"><a href="#线性查找算法-顺序查找算法" class="headerlink" title="线性查找算法(顺序查找算法)"></a>线性查找算法(顺序查找算法)</h4><p>算法流程</p>
+<pre><code>a.使用目标元素与样本数列中的第一个元素起依次进行比较；
+b.若找到与目标元素相等的元素，则表示查找成功；
+c.若目标元素与所有样本元素比较完毕都没有找到相等的元素，则表示查找失败；
+</code></pre><h4 id="二分查找算法-折半查找算法"><a href="#二分查找算法-折半查找算法" class="headerlink" title="二分查找算法(折半查找算法)"></a>二分查找算法(折半查找算法)</h4><p>算法流程</p>
+<pre><code>a.假定样本数列从小到大排列，使用目标元素与样本数列中的中间元素比较大小；
+b.若目标元素与中间元素相等，则表示查找成功；
+c.若目标元素小于中间元素，则应该去中间元素的左边进行查找，重复步骤b；
+d.若目标元素大于中间元素，则应该去中间元素的右边进行查找，重复步骤b；
+e.直到目标元素与所有该比较的元素比较完毕也不相等，则表示查找失败；
+</code></pre><h3 id="常用的排序算法"><a href="#常用的排序算法" class="headerlink" title="常用的排序算法"></a>常用的排序算法</h3><h4 id="冒泡排序算法-重中之重"><a href="#冒泡排序算法-重中之重" class="headerlink" title="冒泡排序算法(重中之重)"></a>冒泡排序算法(重中之重)</h4><p>算法流程</p>
+<pre><code>a.比较相邻位置两个元素的大小，若第一个元素比第二个元素大，则交换两个元素的位置；
+b.从开始的第一对元素一直到结尾的最后一对，使用步骤1依次比较，经过这一轮，最后的
+元素将是这组元素中的最大值；
+c.重复步骤b，持续对越来越少的元素进行比较，直到处理完毕所有元素为止；
+(当任意两个相邻位置的元素都不需要发生交换时，证明排序完毕)
+</code></pre><h4 id="插入排序算法-理解思想"><a href="#插入排序算法-理解思想" class="headerlink" title="插入排序算法(理解思想)"></a>插入排序算法(理解思想)</h4><p>算法流程</p>
+<pre><code>a.从第一个元素起，认定该元素已经有序；
+b.取出下一个元素，让取出的元素与左边的有序数列从右向左依次比较大小；
+c.若取出的元素小于左边的元素，则将左边的元素右移，也就是赋值到下一个位置；
+d.若取出的元素大于等于左边的元素，则将取出的元素插入到左边元素的右边；
+e.重复步骤b，直到处理完毕所有元素为止；
+</code></pre><h4 id="选择排序算法-理解思想"><a href="#选择排序算法-理解思想" class="headerlink" title="选择排序算法(理解思想)"></a>选择排序算法(理解思想)</h4><p>算法流程</p>
+<pre><code>a.取出第一个元素，并假定该元素为这组元素中的最小值，使用变量min记录下标；
+b.使用min记录的最小值与后续元素依次比较大小；
+c.若后续元素中出现了比min记录的最小值还小的元素，则使用min重新记录该元素；
+d.直到min记录的最小值与后续所有元素比较完毕时，交换min记录的最小值与最开始
+假定的最小值，经过这一步，这组元素中的最小值便放在了最起始位置；
+e.重复步骤a，直到处理完毕所有元素为止；
+</code></pre><h4 id="快速排序算法-重点"><a href="#快速排序算法-重点" class="headerlink" title="快速排序算法(重点)"></a>快速排序算法(重点)</h4><p>算法流程</p>
+<pre><code>a.使用样本数列中的中间元素作为基准值并单独保存；
+b.分别使用左右两边的元素依次与基准值比较大小，将所有比基准值小的元素放在基准值
+的左边，将所有大于等于基准值的元素放到基准值的右边，这个过程叫做分组；
+c.直到左右两边的元素下标重合时，将基准值放到重合的位置，此时分组完成；
+d.分别对基准值左右两边的分组重复以上过程进行再次分组，直到处理完毕所有元素为止；
+</code></pre><h2 id="SE阶段代表性编程题"><a href="#SE阶段代表性编程题" class="headerlink" title="SE阶段代表性编程题"></a>SE阶段代表性编程题</h2><pre><code>1.打印九九乘法表（双重for循环）
+2.个人所得税（if else if 分支结构）
+3.数组的增删改查
+4.递归方法的调用
+5.单例设计模式（饿汉式，懒汉式）
+6.匿名内部类
+7.自定义异常类
+8.递归实现多层文件读取文件名
+9.使用byte[] 实现文件的拷贝
+10.多线程的实现方式（扩展）
+11.基于TCP协议的网络编程（UDP协议 扩展）
+12.冒泡算法(快速算法 扩展)
+13.工厂模式 抽象工程模式(23种设计模式 扩展)
+14.学生信息管理系统
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>求打赏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="易慕晓生 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="易慕晓生 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/11/那年学过的Java笔记三核心类库二/" rel="next" title="那年学过的Java笔记三核心类库二">
+                <i class="fa fa-chevron-left"></i> 那年学过的Java笔记三核心类库二
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/11/那年学过的Java笔记三核心类库一/" rel="prev" title="那年学过的Java笔记三核心类库一">
+                那年学过的Java笔记三核心类库一 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">易慕晓生</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心 方得始终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YDoctor" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:825742394@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">1.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程的创建-重中之重"><span class="nav-number">1.2.</span> <span class="nav-text">线程的创建(重中之重)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现原理-尽量理解"><span class="nav-number">1.3.</span> <span class="nav-text">实现原理(尽量理解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程的编号和名称-熟悉"><span class="nav-number">1.4.</span> <span class="nav-text">线程的编号和名称(熟悉)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程的主要状态-了解"><span class="nav-number">1.5.</span> <span class="nav-text">线程的主要状态(了解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程的常用方法-重点"><span class="nav-number">1.6.</span> <span class="nav-text">线程的常用方法(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程的同步机制-重点"><span class="nav-number">1.7.</span> <span class="nav-text">线程的同步机制(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁-尽量理解"><span class="nav-number">1.8.</span> <span class="nav-text">死锁(尽量理解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object类中的常用方法-尽量理解"><span class="nav-number">1.9.</span> <span class="nav-text">Object类中的常用方法(尽量理解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池"><span class="nav-number">1.10.</span> <span class="nav-text">线程池</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络编程"><span class="nav-number">2.</span> <span class="nav-text">网络编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#七层协议模型-了解"><span class="nav-number">2.1.</span> <span class="nav-text">七层协议模型(了解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的网络协议-了解"><span class="nav-number">2.2.</span> <span class="nav-text">常见的网络协议(了解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址-重点"><span class="nav-number">2.3.</span> <span class="nav-text">IP地址(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口号-重点"><span class="nav-number">2.4.</span> <span class="nav-text">端口号(重点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于tcp协议的编程模型-重点"><span class="nav-number">2.5.</span> <span class="nav-text">基于tcp协议的编程模型(重点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编程模型"><span class="nav-number">2.5.1.</span> <span class="nav-text">编程模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关类和方法"><span class="nav-number">2.5.2.</span> <span class="nav-text">相关类和方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tcp协议和udp协议的比较-笔试题"><span class="nav-number">2.5.3.</span> <span class="nav-text">tcp协议和udp协议的比较(笔试题)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于UDP协议的编程模型"><span class="nav-number">2.6.</span> <span class="nav-text">基于UDP协议的编程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DatagramSocket类"><span class="nav-number">2.6.1.</span> <span class="nav-text">DatagramSocket类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DatagramPacket类"><span class="nav-number">2.6.2.</span> <span class="nav-text">DatagramPacket类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#InetAddress类"><span class="nav-number">2.6.3.</span> <span class="nav-text">InetAddress类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反射机制"><span class="nav-number">3.</span> <span class="nav-text">反射机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">3.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class类"><span class="nav-number">3.2.</span> <span class="nav-text">Class类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取Class对象的主要方式"><span class="nav-number">3.2.1.</span> <span class="nav-text">获取Class对象的主要方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Constructor类"><span class="nav-number">3.2.2.</span> <span class="nav-text">Constructor类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Field类"><span class="nav-number">3.2.3.</span> <span class="nav-text">Field类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Method类"><span class="nav-number">3.2.4.</span> <span class="nav-text">Method类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计原则"><span class="nav-number">4.</span> <span class="nav-text">设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目开发的流程"><span class="nav-number">4.1.</span> <span class="nav-text">项目开发的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的设计原则"><span class="nav-number">4.2.</span> <span class="nav-text">常用的设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开闭原则"><span class="nav-number">4.2.1.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#里氏代换原则"><span class="nav-number">4.2.2.</span> <span class="nav-text">里氏代换原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖倒转原则"><span class="nav-number">4.2.3.</span> <span class="nav-text">依赖倒转原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口隔离原则"><span class="nav-number">4.2.4.</span> <span class="nav-text">接口隔离原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迪米特法则（最少知道原则）"><span class="nav-number">4.2.5.</span> <span class="nav-text">迪米特法则（最少知道原则）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合成复用原则"><span class="nav-number">4.2.6.</span> <span class="nav-text">合成复用原则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式"><span class="nav-number">5.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念-1"><span class="nav-number">5.1.</span> <span class="nav-text">基本概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的算法"><span class="nav-number">6.</span> <span class="nav-text">常用的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的查找算法-重点"><span class="nav-number">6.1.</span> <span class="nav-text">常用的查找算法(重点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线性查找算法-顺序查找算法"><span class="nav-number">6.1.1.</span> <span class="nav-text">线性查找算法(顺序查找算法)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二分查找算法-折半查找算法"><span class="nav-number">6.1.2.</span> <span class="nav-text">二分查找算法(折半查找算法)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的排序算法"><span class="nav-number">6.2.</span> <span class="nav-text">常用的排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#冒泡排序算法-重中之重"><span class="nav-number">6.2.1.</span> <span class="nav-text">冒泡排序算法(重中之重)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入排序算法-理解思想"><span class="nav-number">6.2.2.</span> <span class="nav-text">插入排序算法(理解思想)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择排序算法-理解思想"><span class="nav-number">6.2.3.</span> <span class="nav-text">选择排序算法(理解思想)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速排序算法-重点"><span class="nav-number">6.2.4.</span> <span class="nav-text">快速排序算法(重点)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE阶段代表性编程题"><span class="nav-number">7.</span> <span class="nav-text">SE阶段代表性编程题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">易慕晓生</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=create by yimu"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=create by yimu"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=create by yimu"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=create by yimu"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=create by yimu"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
